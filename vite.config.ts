@@ -1,14 +1,24 @@
+import { fileURLToPath } from 'url'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import Unocss from 'unocss/vite'
 // https://vitejs.dev/config/
+
+const baseUrl = fileURLToPath(new URL('./src', import.meta.url))
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': baseUrl,
+    },
+  },
   plugins: [
     vue({
       reactivityTransform: true,
     }),
+    Unocss(),
     AutoImport({
       imports: [
         'vue',
