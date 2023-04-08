@@ -12,7 +12,7 @@ export interface LayoutTheme {
 
 export const layoutThemeConfig: LayoutTheme = {
   title: 'naive admin',
-  layout: 'mix',
+  layout: 'side',
   headerHeight: 48,
   logo,
   siderWidth: 240,

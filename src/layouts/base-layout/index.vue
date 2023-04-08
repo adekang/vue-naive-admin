@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SideLayout from '../side-layout/index.vue'
 import MixLayout from '../mix-layout/index.vue'
 import { useAppstore } from '@/store/app'
 
@@ -7,8 +8,8 @@ const { layout } = storeToRefs(appStore)
 </script>
 
 <template>
-  <MixLayout
-    v-if="layout.layout === 'mix'"
+  <SideLayout
+    v-if="layout.layout === 'side'"
     :logo="layout.logo"
     :title="layout.title"
     :show-sider-trigger="layout.showSiderTrigger"
@@ -21,7 +22,7 @@ const { layout } = storeToRefs(appStore)
       </div>
     </template>
     <router-view />
-  </mixlayout>
+  </sidelayout>
 </template>
 
 <style scoped />

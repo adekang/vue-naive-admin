@@ -4,6 +4,6 @@ const attrs = useAttrs()
 
 <template>
   <n-layout-sider v-bind="attrs" collapse-mode="width">
-    海淀桥
+    <slot />
   </n-layout-sider>
 </template>
