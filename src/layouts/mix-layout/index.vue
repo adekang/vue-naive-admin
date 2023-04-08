@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import Logo from '@/layouts/common/logo.vue'
+import Title from '@/layouts/common/title.vue'
+
 const props = withDefaults(defineProps<{
   headerHeight?: number
+  logo?: string
+  title?: string
 }>(), {
   headerHeight: 48,
 })
@@ -10,8 +15,16 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
 
 <template>
   <n-layout class="h-screen">
-    <n-layout-header class="pro-admin-mix-layout-header">
-      颐和园路
+    <n-layout-header inverted class="pro-admin-mix-layout-header flex items-center px-4 justify-between">
+      <div flex items-center>
+        <Logo :src="logo" />
+        <Title :title="title" />
+      </div>
+      <slot name="headerRight">
+        <div>
+          右边
+        </div>
+      </slot>
     </n-layout-header>
     <n-layout has-sider class="pro-admin-mix-layout-content">
       <n-layout-sider content-style="padding: 24px;">
@@ -31,19 +44,5 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
 
 .pro-admin-mix-layout-content {
   height: v-bind(contentHeightVar);
-}
-
-.n-layout-header,
-.n-layout-footer {
-  background: rgba(128, 128, 128, 0.2);
-  padding: 24px;
-}
-
-.n-layout-sider {
-  background: rgba(128, 128, 128, 0.3);
-}
-
-.n-layout-content {
-  background: rgba(128, 128, 128, 0.4);
 }
 </style>
