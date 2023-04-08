@@ -8,11 +8,14 @@ const props = withDefaults(defineProps<{
   siderWidth?: number
   siderCollapsedWidth?: number
   showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
+  collapsed?: boolean
 }>(), {
   headerHeight: 48,
   siderWidth: 240,
   siderCollapsedWidth: 48,
+  collapsed: false,
 })
+defineEmits(['update:collapsed'])
 const contentHeightVar = computed(() => `calc(100vh - ${props.headerHeight}px)`)
 const headerHeightVar = computed(() => `${props.headerHeight}px`)
 </script>
@@ -32,10 +35,11 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
     </n-layout-header>
     <n-layout has-sider class="pro-admin-mix-layout-content">
       <LayoutSider
+        :collapsed="collapsed"
         :collapsed-width="siderCollapsedWidth"
         :width="siderWidth"
         :show-trigger="showSiderTrigger"
-        content-style="padding: 24px;"
+        @update:collapsed="($event) => $emit('update:collapsed', $event)"
       >
         海淀桥
       </LayoutSider>
