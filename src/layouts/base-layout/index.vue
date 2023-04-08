@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import MixLayout from '../mix-layout/index.vue'
+import { useAppstore } from '@/store/app'
 
+const appStore = useAppstore()
+const { layout } = storeToRefs(appStore)
 </script>
 
 <template>
-  <div>
-    全局布局文件
+  <MixLayout
+    v-if="layout.layout === 'mix'"
+  >
     <router-view />
-  </div>
+  </mixlayout>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped />
