@@ -2,11 +2,9 @@
 </script>
 
 <template>
-  <router-link to="/">
-    Home
-  </router-link>
-  <router-link to="/workspace">
-    workspace
-  </router-link>
-  <router-view />
+  <n-config-provider>
+    <app-provider>
+      <router-view />
+    </app-provider>
+  </n-config-provider>
 </template>

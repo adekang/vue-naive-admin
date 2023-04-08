@@ -1,25 +1,54 @@
-<script setup lang="ts">
-import { useCounters } from '@/store/counter'
+<script lang="ts" setup>
+const message = useMessage()
+const dialog = useDialog()
+const notification = useNotification()
+const loadingBar = useLoadingBar()
+const onMessage = () => {
+  message.success('Hello, world!')
+}
 
-const counterStore = useCounters()
+const onDialog = () => {
+  dialog.success({
+    title: 'Hello, world!',
+    content: 'This is a success dialog.',
+    onPositiveClick: onMessage,
+  })
+}
 
-const {
-  counter,
-  double,
-} = storeToRefs(counterStore)
+const onNotification = () => {
+  notification.success({
+    title: 'Hello, world!',
+    content: 'This is a success notification.',
+  })
+}
+
+const onLoading = () => {
+  loadingBar.start()
+  setTimeout(() => {
+    loadingBar.finish()
+  }, 3000)
+}
 </script>
 
 <template>
   <div>
-    index
-    <h1>{{ counter }}</h1>
-    <h1>{{ double }}</h1>
-    <n-button @click="counterStore.increment">
-      增加
-    </n-button>
-    <n-button @click="counterStore.decrement">
-      减少
-    </n-button>
+    <n-space>
+      <n-button @click="onMessage">
+        Message
+      </n-button>
+
+      <n-button @click="onDialog">
+        Dialog
+      </n-button>
+
+      <n-button @click="onNotification">
+        Notification
+      </n-button>
+
+      <n-button @click="onLoading">
+        Loading
+      </n-button>
+    </n-space>
   </div>
 </template>
 
