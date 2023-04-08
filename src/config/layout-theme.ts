@@ -5,6 +5,9 @@ export interface LayoutTheme {
   layout: 'mix' | 'side' | 'top'
   headerHeight: number
   logo?: string
+  siderWidth: number // 侧边栏宽度
+  siderCollapsedWidth: number // 侧边栏收起的宽度
+  showSiderTrigger: boolean | 'bar' | 'arrow-circle' // 侧边栏默认的触发方式
 }
 
 export const layoutThemeConfig: LayoutTheme = {
@@ -12,4 +15,7 @@ export const layoutThemeConfig: LayoutTheme = {
   layout: 'mix',
   headerHeight: 48,
   logo,
+  siderWidth: 240,
+  siderCollapsedWidth: 48,
+  showSiderTrigger: 'bar',
 }
