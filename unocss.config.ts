@@ -11,6 +11,13 @@ import {
 
 export default defineConfig({
   shortcuts: [],
+  safelist: [
+    'bg-[var(--base-color)]',
+    'bg-[var(--inverted-color)]',
+    'h-75%',
+    'h-100%',
+    'bottom-0',
+  ],
   presets: [
     presetUno(), // 默认wind预设
     presetAttributify(), // class拆分属性预设
