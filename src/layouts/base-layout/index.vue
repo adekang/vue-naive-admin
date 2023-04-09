@@ -2,52 +2,36 @@
 import MixLayout from '../mix-layout/index.vue'
 import SideLayout from '../side-layout/index.vue'
 import TopLayout from '../top-layout/index.vue'
+import MobileLayout from '../mobile-layout/index.vue'
+import { useQueryBreakpoints } from '@/compsables/query-breakpoints'
 import { useAppstore } from '@/store/app'
 
 const appStore = useAppstore()
-const { layout } = storeToRefs(appStore)
+const {
+  layout,
+  visible,
+} = storeToRefs(appStore)
+
+const {
+  isMobile,
+  isDesktop,
+  isPad,
+} = useQueryBreakpoints()
+watchEffect(() => {
+  if (isDesktop.value)
+    appStore.toggleCollapsed(false)
+  else if (isPad.value)
+    appStore.toggleCollapsed(true)
+
+  if (isMobile.value)
+    appStore.toggleCollapsed(false)
+})
 </script>
 
 <template>
-  <MixLayout
-    v-if="layout.layout === 'mix'"
-    v-model:collapsed="layout.collapsed"
-    :logo="layout.logo"
-    :title="layout.title"
-    :show-sider-trigger="layout.showSiderTrigger"
-    :sider-width="layout.siderWidth"
-    :sider-collapsed-width="layout.siderCollapsedWidth"
-  >
-    <template #headerRight>
-      <div>
-        测试右侧插槽
-      </div>
-    </template>
-    <router-view />
-  </MixLayout>
-  <SideLayout
-    v-if="layout.layout === 'side'"
-    v-model:collapsed="layout.collapsed"
-    :logo="layout.logo"
-    :title="layout.title"
-    :show-sider-trigger="layout.showSiderTrigger"
-    :sider-width="layout.siderWidth"
-    :sider-collapsed-width="layout.siderCollapsedWidth"
-  >
-    <template #headerRight>
-      <div>
-        测试右侧插槽
-      </div>
-    </template>
-    <template #headerLeft>
-      <div>
-        测试左侧插槽
-      </div>
-    </template>
-    <router-view />
-  </SideLayout>
-  <TopLayout
-    v-if="layout.layout === 'top'"
+  <MobileLayout
+    v-if="isMobile"
+    v-model:visible="visible"
     :logo="layout.logo"
     :title="layout.title"
   >
@@ -56,13 +40,64 @@ const { layout } = storeToRefs(appStore)
         测试右侧插槽
       </div>
     </template>
-    <template #headerLeft>
-      <div>
-        测试左侧插槽
-      </div>
-    </template>
     <router-view />
-  </TopLayout>
+  </MobileLayout>
+  <template v-else>
+    <MixLayout
+      v-if="layout.layout === 'mix'"
+      v-model:collapsed="layout.collapsed"
+      :logo="layout.logo"
+      :title="layout.title"
+      :show-sider-trigger="layout.showSiderTrigger"
+      :sider-width="layout.siderWidth"
+      :sider-collapsed-width="layout.siderCollapsedWidth"
+    >
+      <template #headerRight>
+        <div>
+          测试右侧插槽
+        </div>
+      </template>
+      <router-view />
+    </MixLayout>
+    <SideLayout
+      v-if="layout.layout === 'side'"
+      v-model:collapsed="layout.collapsed"
+      :logo="layout.logo"
+      :title="layout.title"
+      :show-sider-trigger="layout.showSiderTrigger"
+      :sider-width="layout.siderWidth"
+      :sider-collapsed-width="layout.siderCollapsedWidth"
+    >
+      <template #headerRight>
+        <div>
+          测试右侧插槽
+        </div>
+      </template>
+      <template #headerLeft>
+        <div>
+          测试左侧插槽
+        </div>
+      </template>
+      <router-view />
+    </SideLayout>
+    <TopLayout
+      v-if="layout.layout === 'top'"
+      :logo="layout.logo"
+      :title="layout.title"
+    >
+      <template #headerRight>
+        <div>
+          测试右侧插槽
+        </div>
+      </template>
+      <template #headerLeft>
+        <div>
+          测试左侧插槽
+        </div>
+      </template>
+      <router-view />
+    </TopLayout>
+  </template>
 </template>
 
 <style scoped>
