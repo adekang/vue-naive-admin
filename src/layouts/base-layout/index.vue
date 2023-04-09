@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import MixLayout from '../mix-layout/index.vue'
 import SideLayout from '../side-layout/index.vue'
+import TopLayout from '../top-layout/index.vue'
 import { useAppstore } from '@/store/app'
 
 const appStore = useAppstore()
@@ -45,6 +46,23 @@ const { layout } = storeToRefs(appStore)
     </template>
     <router-view />
   </SideLayout>
+  <TopLayout
+    v-if="layout.layout === 'top'"
+    :logo="layout.logo"
+    :title="layout.title"
+  >
+    <template #headerRight>
+      <div>
+        测试右侧插槽
+      </div>
+    </template>
+    <template #headerLeft>
+      <div>
+        测试左侧插槽
+      </div>
+    </template>
+    <router-view />
+  </TopLayout>
 </template>
 
 <style scoped>

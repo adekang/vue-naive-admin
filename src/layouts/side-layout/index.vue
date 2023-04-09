@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LayoutContent, LayoutSider, Logo, Title } from '@/layouts/common'
+import { LayoutBase, LayoutContent, LayoutSider, Logo, Title } from '@/layouts/common'
 
 const props = withDefaults(defineProps<{
   headerHeight?: number
@@ -37,7 +37,7 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
         <Title v-if="!collapsed" :size="22" :title="title" />
       </div>
     </LayoutSider>
-    <n-layout style="--n-color :var(--pro-admin-layout-content-bg)">
+    <LayoutBase>
       <n-layout-header class="pro-admin-mix-layout-header flex items-center px-4 justify-between">
         <slot name="headerLeft">
           <div />
@@ -49,7 +49,7 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
       <LayoutContent content-style="padding: 24px;">
         <slot />
       </LayoutContent>
-    </n-layout>
+    </LayoutBase>
   </n-layout>
 </template>
 
