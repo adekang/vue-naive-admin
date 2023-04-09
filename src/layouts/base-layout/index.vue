@@ -11,6 +11,8 @@ const appStore = useAppstore()
 const {
   layout,
   visible,
+  layoutList,
+  layoutStyleList,
 } = storeToRefs(appStore)
 
 const {
@@ -65,6 +67,7 @@ watchEffect(() => {
       v-model:collapsed="layout.collapsed"
       :logo="layout.logo"
       :title="layout.title"
+      :inverted="layout.layoutStyle === 'inverted'"
       :show-sider-trigger="layout.showSiderTrigger"
       :sider-width="layout.siderWidth"
       :sider-collapsed-width="layout.siderCollapsedWidth"
@@ -85,6 +88,7 @@ watchEffect(() => {
       v-if="layout.layout === 'top'"
       :logo="layout.logo"
       :title="layout.title"
+      :inverted="layout.layoutStyle === 'inverted'"
     >
       <template #headerRight>
         <div>
@@ -99,7 +103,11 @@ watchEffect(() => {
       <router-view />
     </TopLayout>
   </template>
-  <SettingDrawer v-model:layout="layout.layout" />
+  <SettingDrawer
+    v-model:layout="layout.layout"
+    v-model:layout-style="layout.layoutStyle"
+    :layout-list="layoutList" :layout-style-list="layoutStyleList"
+  />
 </template>
 
 <style scoped>

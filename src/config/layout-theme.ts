@@ -1,8 +1,16 @@
 import logo from '@/assets/vue.svg'
 
+export interface LayoutType {
+  key: 'mix' | 'side' | 'top'
+  id?: string
+  inverted?: boolean
+  title?: string
+}
+
 export interface LayoutTheme {
   title?: string
   layout: 'mix' | 'side' | 'top'
+  layoutStyle: 'light' | 'inverted'
   headerHeight: number
   logo?: string
   siderWidth: number // 侧边栏宽度
@@ -14,6 +22,7 @@ export interface LayoutTheme {
 export const layoutThemeConfig: LayoutTheme = {
   title: 'naive admin',
   layout: 'mix',
+  layoutStyle: 'light',
   headerHeight: 48,
   logo,
   siderWidth: 240,
