@@ -51,7 +51,8 @@ export const useAppstore = defineStore('app', () => {
       })
     }
     else {
-      updateLayoutStyle('light')
+      if (layout.layoutStyle !== 'dark')
+        updateLayoutStyle('light')
     }
     return list
   })
