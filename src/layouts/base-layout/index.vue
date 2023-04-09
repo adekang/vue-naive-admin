@@ -99,7 +99,7 @@ watchEffect(() => {
       <router-view />
     </TopLayout>
   </template>
-  <SettingDrawer />
+  <SettingDrawer v-model:layout="layout.layout" />
 </template>
 
 <style scoped>
