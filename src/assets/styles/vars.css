@@ -1,5 +1,10 @@
 html {
   --pro-admin-layout-content-bg: #f0f2f5;
-  --pro-admin-layout-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .18)
+  --pro-admin-layout-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .18);
+  background: var(--pro-admin-layout-content-bg);
 }
 
+html.dark {
+  --pro-admin-layout-content-bg: #2A2C2C;
+  --pro-admin-layout-box-shadow: 0 1px 3px 0 rgba(13, 13, 13, .18);
+}

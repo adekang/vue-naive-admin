@@ -1,3 +1,4 @@
+import { darkTheme } from 'naive-ui'
 import { useLayoutTheme } from '@/compsables/layout-theme'
 import type { LayoutTheme, LayoutType } from '@/config/layout-theme'
 import { layoutThemeConfig } from '@/config/layout-theme'
@@ -55,11 +56,19 @@ export const useAppstore = defineStore('app', () => {
     return list
   })
 
+  const layoutTheme = computed(() => {
+    if (layout.layoutStyle === 'dark')
+      return darkTheme
+
+    return undefined
+  })
+
   return {
     layout,
     layoutList,
     layoutStyleList,
     visible,
+    layoutTheme,
     updateLayout,
     updateLayoutStyle,
     toggleVisible,
