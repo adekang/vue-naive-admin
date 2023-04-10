@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAutoDark } from '@/compsables/auto-dark'
+import { useAutoLang } from '@/compsables/auto-lang'
 import { useAppstore } from '@/store/app'
 
 const appStore = useAppstore()
@@ -8,10 +9,16 @@ const {
   overridesTheme,
 } = storeToRefs(appStore)
 useAutoDark()
+const { naiveLocale } = useAutoLang()
 </script>
 
 <template>
-  <n-config-provider :theme="layoutTheme" :theme-overrides="overridesTheme">
+  <n-config-provider
+    :date-locale="naiveLocale.dataLocale"
+    :locale="naiveLocale.locale"
+    :theme="layoutTheme"
+    :theme-overrides="overridesTheme"
+  >
     <n-global-style />
     <app-provider>
       <router-view />

@@ -14,6 +14,10 @@ export default defineConfig({
       '@': baseUrl,
     },
   },
+  define: {
+    __VUE_I18N_FULL_INSTALL__: false,
+    __VUE_I18N_LEGACY_API__: false,
+  },
   plugins: [
     vue({
       reactivityTransform: true,

@@ -1,17 +1,21 @@
 <script lang="ts" setup>
-import { useAppstore } from '@/store/app'
-import { colors } from '@/config/theme'
-const appStore = useAppstore()
-const onSwitch = (theme: string) => {
-  appStore.updateTheme(theme)
+import { useAppLocale } from '@/compsables/auto-lang'
+
+const appLocale = useAppLocale()
+const onSwitch = (lang: string) => {
+  appLocale.value = lang
 }
 </script>
 
 <template>
   <div>
     <n-space>
-      <n-button v-for="(color, key) in colors" :key="key" type="primary" @click="onSwitch(key)">
-        {{ key }}
+      <n-input />
+      <n-button @click="onSwitch('zh-CN')">
+        中文
+      </n-button>
+      <n-button @click="onSwitch('en-US')">
+        en
       </n-button>
     </n-space>
   </div>
