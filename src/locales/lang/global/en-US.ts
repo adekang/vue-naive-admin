@@ -16,4 +16,8 @@ export default {
   'global.layout.setting.drawer.layout.side': 'Side menu layout',
   'global.layout.setting.drawer.layout.mix': 'Mix menu layout',
   'global.layout.setting.drawer.layout.top': 'Top menu layout',
+  'global.request.error.401': 'Login Expired',
+  'global.request.error.403': 'Resource Request Error',
+  'global.request.error.500': 'Server Error',
+  'global.request.error.other': 'System Error',
 }
