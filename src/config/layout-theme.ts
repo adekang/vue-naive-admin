@@ -18,6 +18,7 @@ export interface LayoutTheme {
   siderCollapsedWidth: number // 侧边栏收起的宽度
   showSiderTrigger: boolean | 'bar' | 'arrow-circle' // 侧边栏默认的触发方式
   collapsed: boolean
+  theme: string
 }
 
 export const layoutThemeConfig: LayoutTheme = {
@@ -30,4 +31,5 @@ export const layoutThemeConfig: LayoutTheme = {
   siderCollapsedWidth: 48,
   showSiderTrigger: 'bar',
   collapsed: false,
+  theme: 'default',
 }

@@ -13,6 +13,7 @@ const {
   visible,
   layoutList,
   layoutStyleList,
+  themeList,
 } = storeToRefs(appStore)
 
 const {
@@ -105,8 +106,11 @@ watchEffect(() => {
   </template>
   <SettingDrawer
     v-model:layout="layout.layout"
+    v-model:theme="layout.theme"
     v-model:layout-style="layout.layoutStyle"
-    :layout-list="layoutList" :layout-style-list="layoutStyleList"
+    :theme-list="themeList"
+    :layout-list="layoutList"
+    :layout-style-list="layoutStyleList"
   />
 </template>
 

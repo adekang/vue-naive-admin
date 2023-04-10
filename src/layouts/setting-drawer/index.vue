@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { CloseOutlined, SettingOutlined } from '@vicons/antd'
+import type { ThemeType } from '@/config/theme'
+import CheckboxTheme from '@/layouts/setting-drawer/checkbox-theme.vue'
 import type { LayoutType } from '@/config/layout-theme'
 import CheckboxLayout from '@/layouts/setting-drawer/checkbox-layout.vue'
 import Container from '@/layouts/setting-drawer/container.vue'
@@ -9,20 +11,27 @@ const props = withDefaults(defineProps<{
   drawerWidth?: number | string
   layout?: 'mix' | 'side' | 'top'
   layoutStyle?: 'light' | 'inverted'
-  layoutList: LayoutType[]
-  layoutStyleList: LayoutType[]
+  layoutList?: LayoutType[]
+  layoutStyleList?: LayoutType[]
+  themeList?: ThemeType[]
+  theme?: string
 }>(), {
   floatTop: 240,
   drawerWidth: 300,
 })
 
-const emit = defineEmits(['update:layout', 'update:layoutStyle'])
+const emit = defineEmits(['update:theme', 'update:layout', 'update:layoutStyle'])
+const onChangeTheme = (item: string) => {
+  emit('update:theme', item)
+}
+
 const onChange = (val: string) => {
   emit('update:layout', val)
 }
 const onChangeStyle = (val: string) => {
   emit('update:layoutStyle', val)
 }
+
 const show = ref(false)
 
 const handClick = (val: boolean) => {
@@ -73,6 +82,18 @@ const cssVar = computed(() => {
               :inverted="item.inverted"
               :checked="item.id === layoutStyle"
               @click="onChangeStyle(item.id)"
+            />
+          </template>
+        </n-space>
+      </Container>
+      <n-divider />
+      <Container v-if="themeList" title="主题风格配置">
+        <n-space size="large">
+          <template v-for="item in themeList" :key="item.key">
+            <CheckboxTheme
+              :color="item.color"
+              :checked="item.key === theme"
+              @click="onChangeTheme(item.key)"
             />
           </template>
         </n-space>
