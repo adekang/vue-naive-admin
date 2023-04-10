@@ -16,20 +16,7 @@ export const useAppstore = defineStore('app', () => {
   const toggleCollapsed = (val: boolean) => {
     layout.collapsed = val
   }
-  const layoutList = computed<LayoutType[]>(() => {
-    return [{
-      key: 'mix',
-      title: 'Mix Menu Layout',
-    },
-    {
-      key: 'side',
-      title: 'Side Menu Layout',
-    },
-    {
-      key: 'top',
-      title: 'Top Menu Layout',
-    }]
-  })
+
   watch(() => layout.layoutStyle, () => {
     if (layout.layoutStyle === 'dark')
       toggleDark(true)
@@ -43,34 +30,6 @@ export const useAppstore = defineStore('app', () => {
     layout.layoutStyle = val
   }
 
-  const layoutStyleList = computed<LayoutType[]>(() => {
-    const list: LayoutType[] = [{
-      id: 'light',
-      key: 'side',
-      title: '亮色风格',
-    }]
-
-    if (layout.layout !== 'mix') {
-      list.push({
-        id: 'inverted',
-        key: 'side',
-        inverted: true,
-        title: '反转色风格',
-      })
-    }
-    else {
-      if (layout.layoutStyle !== 'dark')
-        updateLayoutStyle('light')
-    }
-    list.push({
-      id: 'dark',
-      key: 'side',
-      title: '暗色风格',
-      dark: true,
-    })
-    return list
-  })
-
   const themeList = computed<ThemeType[]>(() => {
     const list: ThemeType[] = []
     const myColors = isDark.value ? darkColors : colors
@@ -79,6 +38,7 @@ export const useAppstore = defineStore('app', () => {
       list.push({
         color: value.common?.primaryColor as string,
         key: colorsKey,
+        title: `global.layout.setting.drawer.theme.${colorsKey}`,
       })
     }
     return list
@@ -101,7 +61,52 @@ export const useAppstore = defineStore('app', () => {
   const updateTheme = (val: string) => {
     layout.theme = val
   }
+  const layoutList = computed<LayoutType[]>(() => {
+    return [{
+      id: 'side',
+      key: 'side',
+      title: 'global.layout.setting.drawer.layout.side',
+    }, {
+      id: 'top',
 
+      key: 'top',
+      title: 'global.layout.setting.drawer.layout.top',
+    }, {
+      id: 'mix',
+      key: 'mix',
+      title: 'global.layout.setting.drawer.layout.mix',
+    }]
+  })
+
+  const layoutStyleList = computed<LayoutType[]>(() => {
+    const list: LayoutType[] = [
+      {
+        id: 'light',
+        key: 'side',
+        title: 'global.layout.setting.drawer.style.light',
+      },
+    ]
+
+    if (layout.layout !== 'mix') {
+      list.push({
+        id: 'inverted',
+        key: 'side',
+        inverted: true,
+        title: 'global.layout.setting.drawer.style.inverted',
+      })
+    }
+    else {
+      if (layout.layoutStyle !== 'dark')
+        updateLayoutStyle('light')
+    }
+    list.push({
+      id: 'dark',
+      key: 'side',
+      title: 'global.layout.setting.drawer.style.dark',
+      dark: true,
+    })
+    return list
+  })
   return {
     layout,
     layoutList,

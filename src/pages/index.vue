@@ -5,11 +5,14 @@ const appLocale = useAppLocale()
 const onSwitch = (lang: string) => {
   appLocale.value = lang
 }
+
+const { locale } = useI18n()
 </script>
 
 <template>
   <div>
     <n-space>
+      {{ locale }}
       <n-input />
       <n-button @click="onSwitch('zh-CN')">
         中文

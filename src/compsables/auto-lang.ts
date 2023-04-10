@@ -1,9 +1,13 @@
-import i18n, { defaultLocale, loadLanguageAsync } from '@/locales'
+import { defaultLocale, loadLanguageAsync } from '@/locales'
 
 export const useAppLocale = createGlobalState(() => useStorage('locale', defaultLocale))
 
 export const useAutoLang = () => {
   const appLocale = useAppLocale()
+  const {
+    locale,
+    getLocaleMessage,
+  } = useI18n()
   const {
     isSupported,
     language,
@@ -12,6 +16,7 @@ export const useAutoLang = () => {
     try {
       await loadLanguageAsync(lang)
       appLocale.value = lang
+      locale.value = lang
     }
     catch (e) {
       throw new Error(`Failed to load language: ${lang}`)
@@ -26,10 +31,10 @@ export const useAutoLang = () => {
     })
 
     watch(appLocale, (lang) => {
-      if (lang && lang !== i18n.global.locale.value)
+      if (lang && lang !== locale.value)
         setLanguage(lang).then(() => {})
     })
   }
-  const naiveLocale = computed(() => i18n.global.getLocaleMessage(appLocale.value).naiveUI || {})
+  const naiveLocale = computed(() => getLocaleMessage(appLocale.value).naiveUI || {})
   return { naiveLocale }
 }

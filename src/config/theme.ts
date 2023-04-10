@@ -1,4 +1,5 @@
 import type { GlobalThemeOverrides } from 'naive-ui'
+
 export const colors: Record<string, GlobalThemeOverrides> = {
   default: {
     common: {
@@ -140,4 +141,5 @@ export const darkColors: Record<string, GlobalThemeOverrides> = {
 export interface ThemeType {
   color: string
   key: string
+  title?: string
 }
