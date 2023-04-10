@@ -16,14 +16,6 @@ const instance = axios.create({
 })
 // 请求拦截器
 const requestHandler = async (config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
-  // eslint-disable-next-line no-console
-  console.log(import.meta.env.VITE_APP_BASE_API)
-  // eslint-disable-next-line no-console
-  console.log(import.meta.env.VITE_APP_BASE)
-  // eslint-disable-next-line no-console
-  console.log(' VITE_HI: ', import.meta.env.VITE_HI)
-  // eslint-disable-next-line no-console
-  console.log(' VITE_HELLO: ', import.meta.env.VITE_HELLO)
   const token = useAuthorization()
   /**
    * 判断是否存在token，如果存在的话，则每个http header都加上token
