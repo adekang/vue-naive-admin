@@ -1,7 +1,7 @@
 import { useAppstore } from '@/store/app'
 
 export const isDark = useDark()
-const toggleDark = useToggle(isDark)
+export const toggleDark = useToggle(isDark)
 export const useAutoDark = () => {
   const isPrefersDark = usePreferredDark()
   const appStore = useAppstore()

@@ -17,7 +17,6 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits(['update:layout', 'update:layoutStyle'])
-
 const onChange = (val: string) => {
   emit('update:layout', val)
 }
@@ -70,6 +69,7 @@ const cssVar = computed(() => {
             <CheckboxLayout
               :title="item.title"
               :layout="item.key"
+              :dark="item.dark"
               :inverted="item.inverted"
               :checked="item.id === layoutStyle"
               @click="onChangeStyle(item.id)"

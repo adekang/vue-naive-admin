@@ -5,6 +5,7 @@ export interface LayoutType {
   id?: string
   inverted?: boolean
   title?: string
+  dark?: boolean
 }
 
 export interface LayoutTheme {

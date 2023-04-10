@@ -1,5 +1,6 @@
-import { darkTheme } from 'naive-ui'
+import { toggleDark } from '@/compsables/auto-dark'
 import { useLayoutTheme } from '@/compsables/layout-theme'
+import { darkTheme } from '@/config/app-theme'
 import type { LayoutTheme, LayoutType } from '@/config/layout-theme'
 import { layoutThemeConfig } from '@/config/layout-theme'
 
@@ -27,7 +28,12 @@ export const useAppstore = defineStore('app', () => {
       title: 'Top Menu Layout',
     }]
   })
-
+  watch(() => layout.layoutStyle, () => {
+    if (layout.layoutStyle === 'dark')
+      toggleDark(true)
+    else
+      toggleDark(false)
+  })
   const updateLayout = (val: LayoutType['key']) => {
     layout.layout = val
   }
@@ -54,6 +60,12 @@ export const useAppstore = defineStore('app', () => {
       if (layout.layoutStyle !== 'dark')
         updateLayoutStyle('light')
     }
+    list.push({
+      id: 'dark',
+      key: 'side',
+      title: '暗色风格',
+      dark: true,
+    })
     return list
   })
 
