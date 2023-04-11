@@ -1,9 +1,103 @@
 <script lang="ts" setup>
-
+import { GithubOutlined, LockOutlined, MobileOutlined, UserOutlined } from '@vicons/antd'
+import { BlankLayout } from '@/layouts'
 </script>
 
 <template>
-  <div>
-    登录页面
-  </div>
+  <BlankLayout>
+    <!-- 头部 -->
+    <div flex="~ col" class="py-20px items-center justify-center">
+      <div class="flex items-center">
+        <img src="@/assets/vue.svg" class="h-40px w-40px" alt="logo">
+        <span class="ml-3 text-33px font-600">Naive Admin</span>
+      </div>
+      <div class="flex items-center mt-12px mb-40px text-[var(--text-color-3)]">
+        {{ $t('login.admin.desc') }}
+      </div>
+    </div>
+    <!-- 登录部分 -->
+    <div class="w-350px mx-auto">
+      <n-tabs default-value="account" type="line" justify-content="space-evenly">
+        <!-- 账号密码登录 -->
+        <n-tab-pane name="account" :tab="$t('login.account.tab')">
+          <n-form label-placement="left" label-align="left">
+            <n-form-item-row>
+              <n-input :placeholder="$t('login.username.placeholder')">
+                <template #prefix>
+                  <n-icon :component="UserOutlined" />
+                </template>
+              </n-input>
+            </n-form-item-row>
+            <n-form-item-row>
+              <n-input type="password" show-password-on="click" :placeholder="$t('login.password.placeholder')">
+                <template #prefix>
+                  <n-icon :component="LockOutlined" />
+                </template>
+              </n-input>
+            </n-form-item-row>
+            <n-form-item-row>
+              <div class="w-100% flex items-center justify-between">
+                <n-checkbox>
+                  {{ $t('login.remember-me') }}
+                </n-checkbox>
+                <a class="cursor-pointer text-[var(--primary-color)]">
+                  {{ $t('login.forgot-password') }}
+                </a>
+              </div>
+            </n-form-item-row>
+          </n-form>
+          <n-button type="primary" block secondary strong>
+            {{ $t('login.login') }}
+          </n-button>
+        </n-tab-pane>
+
+        <!-- 手机号登录 -->
+        <n-tab-pane name="signup" :tab="$t('login.mobile.tab')">
+          <n-form label-align="left" label-placement="left">
+            <n-form-item-row>
+              <n-input :placeholder="$t('login.mobile.placeholder')">
+                <template #prefix>
+                  <n-icon :component="MobileOutlined" />
+                </template>
+              </n-input>
+            </n-form-item-row>
+            <n-form-item-row>
+              <n-input-group>
+                <n-input :placeholder="$t('login.mobile.verification-code.placeholder')">
+                  <template #prefix>
+                    <n-icon :component="LockOutlined" />
+                  </template>
+                </n-input>
+                <n-button>
+                  {{ $t('login.mobile.verification-code.get-verification-code') }}
+                </n-button>
+              </n-input-group>
+            </n-form-item-row>
+            <n-form-item-row>
+              <div class="w-100% flex items-center justify-between">
+                <n-checkbox>
+                  {{ $t('login.remember-me') }}
+                </n-checkbox>
+                <a class="cursor-pointer text-[var(--primary-color)]">
+                  {{ $t('login.forgot-password') }}
+                </a>
+              </div>
+            </n-form-item-row>
+          </n-form>
+          <n-button type="primary" block secondary strong>
+            {{ $t('login.login') }}
+          </n-button>
+        </n-tab-pane>
+      </n-tabs>
+      <!--  其他登录方式 -->
+      <div class="flex mt-24px items-center">
+        {{ $t('login.sign-in-with') }}
+        <n-icon
+          size="24"
+          class="cursor-pointer text-[var(--text-color-3)] hover:text-[var(--primary-color)]"
+          :component="GithubOutlined"
+        />
+      </div>
+    </div>
+  </blanklayout>
 </template>
