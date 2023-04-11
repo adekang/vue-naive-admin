@@ -1,6 +1,15 @@
 <script lang="ts" setup>
 import { GithubOutlined, LockOutlined, MobileOutlined, UserOutlined } from '@vicons/antd'
+import { useUserStore } from '@/store/user'
 import { BlankLayout } from '@/layouts'
+
+const userStore = useUserStore()
+const onLogin = async () => {
+  await userStore.login({
+    username: '',
+    password: '',
+  })
+}
 </script>
 
 <template>
@@ -46,7 +55,7 @@ import { BlankLayout } from '@/layouts'
               </div>
             </n-form-item-row>
           </n-form>
-          <n-button type="primary" block secondary strong>
+          <n-button type="primary" block secondary strong @click="onLogin">
             {{ $t('login.login') }}
           </n-button>
         </n-tab-pane>

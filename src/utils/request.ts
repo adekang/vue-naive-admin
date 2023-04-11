@@ -100,6 +100,7 @@ export const useGet = <P = any, R = any>(url: string, params?: P, config?: Axios
   })
 }
 
+//  p传入数据类型, R响应数据类型
 export const usePost = <P = any, R = any>(url: string, data?: P, config?: AxiosRequestConfig): Promise<ResponseBody<R>> => {
   return instance.request({
     url,
