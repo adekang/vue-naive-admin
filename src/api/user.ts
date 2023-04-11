@@ -1,4 +1,5 @@
 import { usePost } from '@/utils/request'
+import type { IncludeNull } from '@/utils/types'
 
 export interface UserInfo {
   id: number
@@ -17,14 +18,16 @@ export interface UserInfo {
 export const userLoginUrl = '/user/login'
 
 export interface UserAccountLoginParams {
-  username: string
-  password: string
-  captcha?: string
+  username: IncludeNull<string>
+  password: IncludeNull<string>
+  captcha?: IncludeNull<string>
+  rememberMe?: IncludeNull<boolean>
 }
 
 export interface UserMobileLoginParams {
-  mobile: string | number
-  code: string
+  mobile: IncludeNull<string>
+  code: IncludeNull<string>
+  rememberMe?: IncludeNull<boolean>
   type: 'mobile'
 }
 
