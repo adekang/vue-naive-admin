@@ -1,4 +1,4 @@
-import { userLoginApi } from '@/api/user'
+import { userGetInfoApi, userLoginApi } from '@/api/user'
 import type { UserAccountLoginParams, UserInfo, UserMobileLoginParams } from '@/api/user'
 import { useAuthorization } from '@/compsables/authorization'
 
@@ -23,10 +23,16 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  const getUserInfo = async () => {
+    const { data } = await userGetInfoApi()
+    if (data)
+      setUserInfo(data)
+  }
   return {
     userInfo,
     token,
     setUserInfo,
     login,
+    getUserInfo,
   }
 })

@@ -1,4 +1,4 @@
-import { usePost } from '@/utils/request'
+import { useGet, usePost } from '@/utils/request'
 import type { IncludeNull } from '@/utils/types'
 
 export interface UserInfo {
@@ -15,9 +15,10 @@ export interface UserInfo {
   money?: number
 }
 
-const userApi = {
+export const userApi = {
   userLoginUrl: '/user/login',
   userSendCodeUrl: '/user/send-code',
+  userGetInfoUrl: '/user/info',
 }
 //  Pick提取类型
 export type UserSendCodeParams = Pick<UserMobileLoginParams, 'mobile'>
@@ -46,4 +47,7 @@ export const userLoginApi = (params: UserAccountLoginParams | UserMobileLoginPar
 
 export const userSendCodeApi = (params: UserSendCodeParams) => {
   return usePost<UserSendCodeParams, any>(userApi.userSendCodeUrl, params)
+}
+export const userGetInfoApi = () => {
+  return useGet<any, UserInfo>(userApi.userGetInfoUrl)
 }

@@ -7,6 +7,7 @@ import '@/assets/styles/index.css'
 import 'uno.css'
 import './style.css'
 import i18n from '@/locales'
+import '@/routes/router-guard'
 
 const meta = document.createElement('meta')
 meta.name = 'naive-ui-style'
