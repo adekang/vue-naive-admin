@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { GithubOutlined, LockOutlined, MobileOutlined, UserOutlined } from '@vicons/antd'
 import { useAccountLogin } from './composables/account-login'
+import { useMobileLogin } from './composables/moblie-login'
 import { useUserStore } from '@/store/user'
 import { BlankLayout } from '@/layouts'
 
@@ -12,6 +13,17 @@ const {
   login,
   loading,
 } = useAccountLogin()
+
+const {
+  mModel,
+  mFormRef,
+  mLoading,
+  mLogin,
+  counterState,
+  counter,
+  mRules,
+  sendCode,
+} = useMobileLogin()
 </script>
 
 <template>
@@ -66,30 +78,32 @@ const {
         </n-tab-pane>
 
         <!-- 手机号登录 -->
-        <n-tab-pane name="signup" :tab="$t('login.mobile.tab')">
-          <n-form label-align="left" label-placement="left">
-            <n-form-item-row>
-              <n-input :placeholder="$t('login.mobile.placeholder')">
+        <n-tab-pane name="mobile" :tab="$t('login.mobile.tab')">
+          <n-form ref="mFormRef" :model="mModel" :rules="mRules" label-align="left" label-placement="left">
+            <n-form-item-row path="mobile">
+              <n-input v-model:value="mModel.mobile" :placeholder="$t('login.mobile.placeholder')">
                 <template #prefix>
                   <n-icon :component="MobileOutlined" />
                 </template>
               </n-input>
             </n-form-item-row>
-            <n-form-item-row>
+            <n-form-item-row path="code">
               <n-input-group>
-                <n-input :placeholder="$t('login.mobile.verification-code.placeholder')">
+                <n-input v-model:value="mModel.code" :placeholder="$t('login.mobile.verification-code.placeholder')">
                   <template #prefix>
                     <n-icon :component="LockOutlined" />
                   </template>
                 </n-input>
-                <n-button>
-                  {{ $t('login.mobile.verification-code.get-verification-code') }}
+                <n-button :disabled="counterState" @click="sendCode">
+                  {{
+                    counterState ? `${counter}s${$t('login.mobile.resend')}` : $t('login.mobile.verification-code.get-verification-code')
+                  }}
                 </n-button>
               </n-input-group>
             </n-form-item-row>
-            <n-form-item-row>
+            <n-form-item-row path="rememberMe">
               <div class="w-100% flex items-center justify-between">
-                <n-checkbox>
+                <n-checkbox v-model:value="mModel.rememberMe">
                   {{ $t('login.remember-me') }}
                 </n-checkbox>
                 <a class="cursor-pointer text-[var(--primary-color)]">
@@ -98,7 +112,7 @@ const {
               </div>
             </n-form-item-row>
           </n-form>
-          <n-button type="primary" block secondary strong>
+          <n-button type="primary" :loading="mLoading" block secondary strong @click="mLogin">
             {{ $t('login.login') }}
           </n-button>
         </n-tab-pane>

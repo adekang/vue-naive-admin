@@ -15,7 +15,12 @@ export interface UserInfo {
   money?: number
 }
 
-export const userLoginUrl = '/user/login'
+const userApi = {
+  userLoginUrl: '/user/login',
+  userSendCodeUrl: '/user/send-code',
+}
+//  Pick提取类型
+export type UserSendCodeParams = Pick<UserMobileLoginParams, 'mobile'>
 
 export interface UserAccountLoginParams {
   username: IncludeNull<string>
@@ -36,5 +41,9 @@ export interface UserLoginResult {
 }
 
 export const userLoginApi = (params: UserAccountLoginParams | UserMobileLoginParams) => {
-  return usePost<UserMobileLoginParams | UserAccountLoginParams, UserLoginResult>(userLoginUrl, params)
+  return usePost<UserMobileLoginParams | UserAccountLoginParams, UserLoginResult>(userApi.userLoginUrl, params)
+}
+
+export const userSendCodeApi = (params: UserSendCodeParams) => {
+  return usePost<UserSendCodeParams, any>(userApi.userSendCodeUrl, params)
 }
