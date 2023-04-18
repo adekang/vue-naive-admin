@@ -1,5 +1,15 @@
+<script setup lang="ts">
+import SelectLang from '@/layouts/select-lang/index.vue'
+import { useAppLocale } from '@/compsables/auto-lang'
+
+const appLocale = useAppLocale()
+</script>
+
 <template>
   <n-el tag="div" flex="~ col" class="pro-admin-login-container h-screen">
+    <div class="flex flex-shrink-0 h-48px px-24px items-center justify-end">
+      <SelectLang v-model:value="appLocale" />
+    </div>
     <slot name="prefix" />
     <div class="flex-1">
       <slot />

@@ -4,6 +4,7 @@ import SideLayout from '../side-layout/index.vue'
 import TopLayout from '../top-layout/index.vue'
 import MobileLayout from '../mobile-layout/index.vue'
 import SettingDrawer from '../setting-drawer/index.vue'
+import RightContent from '@/layouts/base-layout/right-content.vue'
 import { useQueryBreakpoints } from '@/compsables/query-breakpoints'
 import { useAppstore } from '@/store/app'
 
@@ -40,9 +41,7 @@ watchEffect(() => {
     :title="layout.title"
   >
     <template #headerRight>
-      <div>
-        测试右侧插槽
-      </div>
+      <RightContent />
     </template>
     <router-view />
   </MobileLayout>
@@ -57,9 +56,7 @@ watchEffect(() => {
       :sider-collapsed-width="layout.siderCollapsedWidth"
     >
       <template #headerRight>
-        <div>
-          测试右侧插槽
-        </div>
+        <RightContent />
       </template>
       <router-view />
     </MixLayout>
@@ -74,9 +71,7 @@ watchEffect(() => {
       :sider-collapsed-width="layout.siderCollapsedWidth"
     >
       <template #headerRight>
-        <div>
-          测试右侧插槽
-        </div>
+        <RightContent />
       </template>
       <template #headerLeft>
         <div>
@@ -92,9 +87,7 @@ watchEffect(() => {
       :inverted="layout.layoutStyle === 'inverted'"
     >
       <template #headerRight>
-        <div>
-          测试右侧插槽
-        </div>
+        <RightContent />
       </template>
       <template #headerLeft>
         <div>

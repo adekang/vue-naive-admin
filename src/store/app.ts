@@ -1,3 +1,4 @@
+import type { DropdownOption } from 'naive-ui'
 import { isDark, toggleDark } from '@/compsables/auto-dark'
 import { useLayoutTheme } from '@/compsables/layout-theme'
 import { darkTheme } from '@/config/app-theme'
@@ -107,6 +108,18 @@ export const useAppstore = defineStore('app', () => {
     })
     return list
   })
+  const localeOptions = ref<DropdownOption[]>([
+    {
+      label: '简体中文',
+      key: 'zh-CN',
+      icon: () => '🇨🇳',
+    },
+    {
+      label: 'English',
+      key: 'en-US',
+      icon: () => '🇺🇸',
+    },
+  ])
   return {
     layout,
     layoutList,
@@ -120,5 +133,6 @@ export const useAppstore = defineStore('app', () => {
     updateLayoutStyle,
     toggleVisible,
     toggleCollapsed,
+    localeOptions,
   }
 })
