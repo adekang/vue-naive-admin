@@ -11,6 +11,7 @@ const baseUrl = fileURLToPath(new URL('./src', import.meta.url))
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   return {
+    base: baseUrl,
     resolve: {
       alias: {
         '@': baseUrl,
