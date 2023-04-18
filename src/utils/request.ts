@@ -11,7 +11,7 @@ import i18n from '@/locales'
 import { STORAGE_AUTHORIZATION_KEY, useAuthorization } from '@/compsables/authorization'
 
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_API ?? '/',
+  baseURL: import.meta.env.VITE_APP_BASE_API ?? import.meta.env.VITE_APP_BASE_URL ?? '/',
   timeout: 50000,
 })
 // 请求拦截器
