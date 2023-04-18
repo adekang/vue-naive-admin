@@ -20,4 +20,8 @@ export default {
   'global.request.error.403': 'Resource Request Error',
   'global.request.error.500': 'Server Error',
   'global.request.error.other': 'System Error',
+  'global.layout.header.right.logout': 'Logout',
+  'global.layout.header.right.logout.success': 'Logout successfully',
+  'global.layout.header.right.user.setting': 'User Setting',
+  'global.layout.header.right.user.center': 'User Center',
 }
