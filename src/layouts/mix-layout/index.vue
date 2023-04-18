@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import type { MenuOption } from 'naive-ui'
 import { LayoutContent, LayoutHeader, LayoutSider, Logo, Title } from '@/layouts/common'
+import SideMenu from '@/layouts/side-menu/index.vue'
 
 const props = withDefaults(defineProps<{
   headerHeight?: number
@@ -9,13 +11,18 @@ const props = withDefaults(defineProps<{
   siderCollapsedWidth?: number
   showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
   collapsed?: boolean
+  active?: string
+  options?: MenuOption[]
+  collapsedIconSize?: number
+  expandedKeys?: string[]
 }>(), {
   headerHeight: 48,
   siderWidth: 240,
   siderCollapsedWidth: 48,
   collapsed: false,
+  collapsedIconSize: 22,
 })
-defineEmits(['update:collapsed'])
+defineEmits(['update:collapsed', 'update:active', 'update:expandedKeys'])
 const contentHeightVar = computed(() => `calc(100vh - ${props.headerHeight}px)`)
 const headerHeightVar = computed(() => `${props.headerHeight}px`)
 </script>
@@ -41,7 +48,16 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
         :show-trigger="showSiderTrigger"
         @update:collapsed="($event) => $emit('update:collapsed', $event)"
       >
-        海淀桥
+        <SideMenu
+          :collapsed="collapsed"
+          :collapsed-width="siderCollapsedWidth"
+          :value="active"
+          :options="options"
+          :collapsed-icon-size="collapsedIconSize"
+          :expanded-keys="expandedKeys"
+          @update:expanded-keys="$emit('update:expandedKeys', $event)"
+          @update:value="$emit('update:active', $event)"
+        />
       </LayoutSider>
       <LayoutContent content-style="padding: 24px;">
         <slot />

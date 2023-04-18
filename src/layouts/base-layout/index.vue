@@ -4,6 +4,7 @@ import SideLayout from '../side-layout/index.vue'
 import TopLayout from '../top-layout/index.vue'
 import MobileLayout from '../mobile-layout/index.vue'
 import SettingDrawer from '../setting-drawer/index.vue'
+import { menuOptions } from '@/layouts/side-menu/menu-data'
 import RightContent from '@/layouts/base-layout/right-content.vue'
 import { useQueryBreakpoints } from '@/compsables/query-breakpoints'
 import { useAppstore } from '@/store/app'
@@ -49,6 +50,7 @@ watchEffect(() => {
     <MixLayout
       v-if="layout.layout === 'mix'"
       v-model:collapsed="layout.collapsed"
+      :options="menuOptions"
       :logo="layout.logo"
       :title="layout.title"
       :show-sider-trigger="layout.showSiderTrigger"
