@@ -4,6 +4,7 @@ import { useAuthorization } from '@/compsables/authorization'
 import router from '@/routes'
 import { useUserStore } from '@/store/user'
 import { useAppstore } from '@/store/app'
+
 export const loginRoute = '/login'
 
 // 白名单
@@ -41,6 +42,16 @@ router.beforeEach(async (to, from, next) => {
       try {
         await userStore.getUserInfo()
         // 判断当前页面是不是登录页面，如果是就跳转到首页
+        // 处理动态路由
+        const currentRouter = await userStore.generateRoutes()
+
+        if (currentRouter) {
+          router.addRoute(currentRouter)
+          next({
+            ...to,
+            replace: true,
+          })
+        }
         if (to.path === loginRoute) {
           next({
             path: '/',

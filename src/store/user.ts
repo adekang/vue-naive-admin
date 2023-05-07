@@ -1,3 +1,5 @@
+import type { RouteRecordRaw } from 'vue-router'
+import { dynamicRoutes, rootRouter } from '@/routes/dynamic-routes'
 import { userGetInfoApi, userLoginApi } from '@/api/user'
 import type { UserAccountLoginParams, UserInfo, UserMobileLoginParams } from '@/api/user'
 import { useAuthorization } from '@/compsables/authorization'
@@ -10,6 +12,8 @@ export const useUserStore = defineStore('user', () => {
   const token = useAuthorization()
   const { message } = useGlobalConfig()
   const { t } = i18n.global
+
+  const routerRecords = ref<RouteRecordRaw[]>()
   const setUserInfo = (info: UserInfo | undefined) => {
     userInfo.value = info
   }
@@ -45,12 +49,24 @@ export const useUserStore = defineStore('user', () => {
       },
     })
   }
+
+  const generateRoutes = async () => {
+    const currentRouter = {
+      ...rootRouter,
+      children: dynamicRoutes,
+    }
+    routerRecords.value = dynamicRoutes
+    return currentRouter
+  }
+
   return {
     userInfo,
     token,
+    routerRecords,
     setUserInfo,
     login,
     getUserInfo,
     logout,
+    generateRoutes,
   }
 })
