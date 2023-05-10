@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'url'
+import { log } from 'console'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -10,6 +11,7 @@ import Unocss from 'unocss/vite'
 const baseUrl = fileURLToPath(new URL('./src', import.meta.url))
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
+  log('env', env)
   return {
     base: './',
     resolve: {
