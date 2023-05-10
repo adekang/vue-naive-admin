@@ -43,18 +43,21 @@ router.beforeEach(async (to, from, next) => {
         await userStore.getUserInfo()
         // 判断当前页面是不是登录页面，如果是就跳转到首页
         // 处理动态路由
-        const currentRouter = await userStore.generateRoutes()
+        // const currentRouter = await userStore.generateRoutes()
 
-        if (currentRouter) {
+        const currentRouter = await userStore.generateDynamicRoutes()
+
+        if (to.path === loginRoute) {
+          next({
+            path: '/',
+          })
+          return
+        }
+        else if (currentRouter) {
           router.addRoute(currentRouter)
           next({
             ...to,
             replace: true,
-          })
-        }
-        if (to.path === loginRoute) {
-          next({
-            path: '/',
           })
           return
         }

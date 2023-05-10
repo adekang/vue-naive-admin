@@ -15,10 +15,24 @@ export interface UserInfo {
   money?: number
 }
 
+export interface MenuInfo {
+  id: number
+  title: string
+  path: string
+  // 夫级id
+  pid?: number
+  name?: string
+  component?: string
+  icon?: string
+  // 重定向
+  redirect?: string
+}
+
 export const userApi = {
   userLoginUrl: '/user/login',
   userSendCodeUrl: '/user/send-code',
   userGetInfoUrl: '/user/info',
+  userMenusUrl: '/user/menus',
 }
 //  Pick提取类型
 export type UserSendCodeParams = Pick<UserMobileLoginParams, 'mobile'>
@@ -50,4 +64,8 @@ export const userSendCodeApi = (params: UserSendCodeParams) => {
 }
 export const userGetInfoApi = () => {
   return useGet<any, UserInfo>(userApi.userGetInfoUrl)
+}
+
+export const userGetMenusApi = () => {
+  return useGet<any, MenuInfo[]>(userApi.userMenusUrl)
 }

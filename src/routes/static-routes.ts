@@ -10,6 +10,10 @@ const staticRoutes: RouteRecordRaw[] = [
     name: 'error',
     component: () => import('@/pages/error/index.vue'),
   },
+  {
+    path: '/:pathMatch(.*)',
+    component: () => import('@/pages/error/index.vue'),
+  },
 ]
 
 export default staticRoutes

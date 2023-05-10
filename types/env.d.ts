@@ -16,11 +16,19 @@ declare module '*.vue' {
 interface ImportMetaEnv {
   readonly VITE_APP_BASE: string;
   readonly VITE_APP_BASE_API: string;
-  readonly VITE_APP_BASE_URL: string
+  readonly VITE_APP_BASE_URL: string;
 }
 
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
+declare module 'vue-router' {
+  interface RouteMeta {
+    title?: string;
+    id?: number;
+    pid?: number;
+    icon?: string;
+  }
+}
 
