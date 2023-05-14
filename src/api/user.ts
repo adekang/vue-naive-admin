@@ -19,7 +19,7 @@ export interface MenuInfo {
   id: number
   title: string
   path: string
-  // 夫级id
+  // 父级id
   pid?: number
   name?: string
   component?: string
