@@ -12,14 +12,14 @@ const target = computed(() => props?.route?.meta?.target as string ?? '_blank')
 
 <template>
   <template v-if="hasChildren">
-    {{ title }}
+    {{ $t(title) }}
   </template>
   <template v-else-if="isFullPath">
-    <a :href="path" :target="target">{{ title }}</a>
+    <a :href="path" :target="target">{{ $t(title) }}</a>
   </template>
   <template v-else>
     <router-link :to="path">
-      {{ title }}
+      {{ $t(title) }}
     </router-link>
   </template>
 </template>

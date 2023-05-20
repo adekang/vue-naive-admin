@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios'
+import i18n from '@/locales'
 import { useGlobalConfig } from '@/compsables/global-config'
 import { useAuthorization } from '@/compsables/authorization'
 import router from '@/routes'
@@ -86,7 +87,10 @@ router.afterEach((to) => {
   globalConfig.loadingBar?.finish()
   const appStore = useAppstore()
   const title = to.meta?.title
-  if (title) { document.title = `${title} - ${appStore.layout.title}` }
+  if (title) {
+    const localeTitle = i18n.global.t(title)
+    document.title = `${localeTitle} - ${appStore.layout.title}`
+  }
   else {
     if (appStore.layout.title)
       document.title = appStore.layout.title

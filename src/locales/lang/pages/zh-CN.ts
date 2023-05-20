@@ -23,4 +23,8 @@ export default {
   'login.login': '登录',
   'login.mobile.verification-code.success': '验证码发送成功！',
   'login.mobile.verification-code.loading': '验证码发送中...',
+  'pages.dashboard.title': '仪表盘',
+  'pages.dashboard.analysis.title': '分析页',
+  'pages.dashboard.workspace.title': '访问量',
+  'pages.jump.baidu': '跳转百度',
 }

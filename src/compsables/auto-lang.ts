@@ -1,4 +1,5 @@
 import { defaultLocale, loadLanguageAsync } from '@/locales'
+import { useAppstore } from '@/store/app'
 
 export const useAppLocale = createGlobalState(() => useStorage('locale', defaultLocale))
 
@@ -7,7 +8,11 @@ export const useAutoLang = () => {
   const {
     locale,
     getLocaleMessage,
+    t,
   } = useI18n()
+
+  const route = useRoute()
+  const appStore = useAppstore()
   const {
     isSupported,
     language,
@@ -17,6 +22,11 @@ export const useAutoLang = () => {
       await loadLanguageAsync(lang)
       appLocale.value = lang
       locale.value = lang
+      const title = route.meta.title
+      if (title) {
+        const localeTitle = t(title)
+        document.title = `${localeTitle} - ${appStore.layout.title}`
+      }
     }
     catch (e) {
       throw new Error(`Failed to load language: ${lang}`)

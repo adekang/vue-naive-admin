@@ -4,14 +4,14 @@ import { Layout } from '@/layouts'
 export const rootRouter: RouteRecordRaw = {
   path: '/',
   name: 'default-router',
-  redirect: '/home',
+  redirect: '/dashboard',
   component: Layout,
   children: [],
 }
 export const dynamicRoutes: RouteRecordRaw[] = [{
   path: '/',
   name: 'index',
-  redirect: '/home',
+  redirect: '/dashboard',
   children: [
     {
       path: '/home',
@@ -20,11 +20,6 @@ export const dynamicRoutes: RouteRecordRaw[] = [{
       meta: {
         title: 'Home',
       },
-    },
-    {
-      path: '/workspace',
-      name: 'Workspace',
-      component: () => import('@/pages/workspace/index.vue'),
     },
   ],
 }]

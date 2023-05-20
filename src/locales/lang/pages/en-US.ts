@@ -22,4 +22,8 @@ export default {
   'login.login': 'Login',
   'login.mobile.verification-code.success': 'Verification code sent successfully!',
   'login.mobile.verification-code.loading': 'Sending verification code...',
+  'pages.dashboard.title': 'Dashboard',
+  'pages.dashboard.analysis.title': 'Analysis',
+  'pages.dashboard.workspace.title': 'Workspace',
+  'pages.jump.baidu': 'Jump to Baidu',
 }
