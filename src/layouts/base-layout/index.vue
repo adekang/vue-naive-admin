@@ -4,12 +4,17 @@ import SideLayout from '../side-layout/index.vue'
 import TopLayout from '../top-layout/index.vue'
 import MobileLayout from '../mobile-layout/index.vue'
 import SettingDrawer from '../setting-drawer/index.vue'
-import { menuOptions } from '@/layouts/side-menu/menu-data'
+// import { menuOptions } from '@/layouts/side-menu/menu-data'
+
+import { useUserStore } from '../../store/user'
 import RightContent from '@/layouts/base-layout/right-content.vue'
 import { useQueryBreakpoints } from '@/compsables/query-breakpoints'
 import { useAppstore } from '@/store/app'
 
 const appStore = useAppstore()
+const userStore = useUserStore()
+const menuOptions = computed(() => userStore.menusData)
+
 const {
   layout,
   visible,

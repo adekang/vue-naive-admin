@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { generateRoute } from '@/routes/generate-route'
+import { generateMenu } from './../routes/generate-menu'
+import { generateRoute } from './../routes/generate-route'
 import { dynamicRoutes, rootRouter } from '@/routes/dynamic-routes'
 import { userGetInfoApi, userLoginApi } from '@/api/user'
 import type { UserAccountLoginParams, UserInfo, UserMobileLoginParams } from '@/api/user'
@@ -15,6 +16,9 @@ export const useUserStore = defineStore('user', () => {
   const { t } = i18n.global
 
   const routerRecords = ref<RouteRecordRaw[]>()
+  // 为非空断言，因为在 generateRoute 中已经判断过了
+  const menusData = computed(() => generateMenu(routerRecords.value!))
+
   const setUserInfo = (info: UserInfo | undefined) => {
     userInfo.value = info
   }
@@ -72,6 +76,7 @@ export const useUserStore = defineStore('user', () => {
     userInfo,
     token,
     routerRecords,
+    menusData,
     setUserInfo,
     login,
     getUserInfo,
