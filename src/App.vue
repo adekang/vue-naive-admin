@@ -2,6 +2,7 @@
 import { useAutoDark } from '@/compsables/auto-dark'
 import { useAutoLang } from '@/compsables/auto-lang'
 import { useMenuStateProvider } from '@/compsables/menu-state'
+import { useMultiTabProvider } from '@/compsables/multi-tab-state'
 import { useAppstore } from '@/store/app'
 
 const appStore = useAppstore()
@@ -12,6 +13,7 @@ const {
 } = storeToRefs(appStore)
 useAutoDark()
 useMenuStateProvider()
+useMultiTabProvider()
 const { naiveLocale } = useAutoLang()
 </script>
 

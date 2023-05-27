@@ -59,7 +59,7 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
           @update:value="$emit('update:active', $event)"
         />
       </LayoutSider>
-      <LayoutContent content-style="padding: 24px;">
+      <LayoutContent>
         <slot />
       </LayoutContent>
     </n-layout>

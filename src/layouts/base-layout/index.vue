@@ -4,6 +4,7 @@ import SideLayout from '../side-layout/index.vue'
 import TopLayout from '../top-layout/index.vue'
 import MobileLayout from '../mobile-layout/index.vue'
 import SettingDrawer from '../setting-drawer/index.vue'
+import WrapContent from './wrap-content.vue'
 import { useMenuState } from '@/compsables/menu-state'
 // import { menuOptions } from '@/layouts/side-menu/menu-data'
 import { useUserStore } from '@/store/user'
@@ -52,7 +53,7 @@ watchEffect(() => {
     <template #headerRight>
       <RightContent />
     </template>
-    <router-view />
+    <WrapContent />
   </MobileLayout>
   <template v-else>
     <MixLayout
@@ -67,9 +68,10 @@ watchEffect(() => {
       :sider-collapsed-width="layout.siderCollapsedWidth"
     >
       <template #headerRight>
-        <RightContent />
+        <router-view />
       </template>
-      <router-view />
+
+      <WrapContent />
     </MixLayout>
     <SideLayout
       v-if="layout.layout === 'side'"
@@ -89,7 +91,7 @@ watchEffect(() => {
           测试左侧插槽
         </div>
       </template>
-      <router-view />
+      <WrapContent />
     </SideLayout>
     <TopLayout
       v-if="layout.layout === 'top'"
@@ -105,7 +107,7 @@ watchEffect(() => {
           测试左侧插槽
         </div>
       </template>
-      <router-view />
+      <WrapContent />
     </TopLayout>
   </template>
   <SettingDrawer
