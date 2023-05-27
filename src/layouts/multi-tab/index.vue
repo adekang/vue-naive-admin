@@ -11,6 +11,7 @@ const {
   tabList,
   current,
   closeTab,
+  refresh,
 } = useMultiTab()
 
 function handleClose(path: string) {
@@ -36,6 +37,8 @@ const dropdownOpt = computed<DropdownOption[]>(() => [
 const handleActionSelect = (key: string) => {
   if (key === 'closeCurrent')
     closeTab()
+  else if (key === 'refreshCurrent')
+    refresh()
 }
 const handleChange = (val: string) => {
   router.push(val)

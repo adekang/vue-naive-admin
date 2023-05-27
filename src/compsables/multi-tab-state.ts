@@ -67,9 +67,18 @@ export const useMultiTab = () => {
       state.tabList.splice(currentIndex, 1)
     }).catch()
   }
+
+  const refresh = (path?: string) => {
+    path = path ?? current.value
+    router.replace({
+      path: `/redirect/${path}`,
+    }).then(() => {}).catch(() => {})
+  }
+
   return {
     tabList,
     current,
     closeTab,
+    refresh,
   }
 }
