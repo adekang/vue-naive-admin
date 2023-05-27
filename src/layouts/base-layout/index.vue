@@ -4,9 +4,9 @@ import SideLayout from '../side-layout/index.vue'
 import TopLayout from '../top-layout/index.vue'
 import MobileLayout from '../mobile-layout/index.vue'
 import SettingDrawer from '../setting-drawer/index.vue'
+import { useMenuState } from '@/compsables/menu-state'
 // import { menuOptions } from '@/layouts/side-menu/menu-data'
-
-import { useUserStore } from '../../store/user'
+import { useUserStore } from '@/store/user'
 import RightContent from '@/layouts/base-layout/right-content.vue'
 import { useQueryBreakpoints } from '@/compsables/query-breakpoints'
 import { useAppstore } from '@/store/app'
@@ -28,6 +28,9 @@ const {
   isDesktop,
   isPad,
 } = useQueryBreakpoints()
+
+const { active } = useMenuState()
+
 watchEffect(() => {
   if (isDesktop.value)
     appStore.toggleCollapsed(false)
@@ -57,6 +60,7 @@ watchEffect(() => {
       v-model:collapsed="layout.collapsed"
       :options="menuOptions"
       :logo="layout.logo"
+      :active="active"
       :title="layout.title"
       :show-sider-trigger="layout.showSiderTrigger"
       :sider-width="layout.siderWidth"
