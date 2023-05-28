@@ -1,11 +1,11 @@
 <script setup lang="ts">
-
+import { MultiTabConsumer } from '@/layouts/multi-tab/multi-tab-consumer'
 </script>
 
 <template>
   <router-view v-slot="{ Component, route }">
-    <keep-alive>
+    <MultiTabConsumer>
       <component :is="Component" :key="route.fullPath" />
-    </keep-alive>
+    </MultiTabConsumer>
   </router-view>
 </template>
