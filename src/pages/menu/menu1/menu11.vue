@@ -1,10 +1,12 @@
 <script setup lang="ts">
-// console.log('analysis')
+// console.log('Menu11')
 </script>
 
 <template>
-  analysis
-  <n-input />
+  <div>
+    Menu11
+    <n-input />
+  </div>
 </template>
 
 <style scoped>

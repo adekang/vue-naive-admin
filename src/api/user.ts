@@ -32,8 +32,8 @@ export const userApi = {
   userLoginUrl: '/user/login',
   userSendCodeUrl: '/user/send-code',
   userGetInfoUrl: '/user/info',
-  // userMenusUrl: '/user/menus',
-  userMenusUrl: '/user/menu-lang',
+  userMenusUrl: '/user/menus1',
+  // userMenusUrl: '/user/menu-lang',
 }
 //  Pick提取类型
 export type UserSendCodeParams = Pick<UserMobileLoginParams, 'mobile'>
