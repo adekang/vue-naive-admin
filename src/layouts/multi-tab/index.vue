@@ -4,8 +4,13 @@ import type { DropdownOption } from 'naive-ui'
 import TabItemCom from './tab-item.vue'
 import type { TabItem } from '@/layouts/multi-tab/type'
 import { useMultiTab, useMultiTabInject } from '@/compsables/multi-tab-state'
-const router = useRouter()
 
+const router = useRouter()
+const contextParams = reactive({
+  x: 0,
+  y: 0,
+  showDropdown: false,
+})
 const state = useMultiTabInject()
 const {
   tabList,
@@ -14,12 +19,28 @@ const {
   refresh,
 } = useMultiTab()
 
-function handleClose(path: string) {
+const handleClose = (path: string) => {
   closeTab(path)
+  contextParams.showDropdown = false
+}
+
+const handleContextMenu = (e: MouseEvent) => {
+  // 阻止默认事件
+  e.preventDefault()
+  e.stopPropagation()
+  contextParams.showDropdown = false
+  nextTick().then(() => {
+    contextParams.showDropdown = true
+    contextParams.x = e.clientX
+    contextParams.y = e.clientY
+  })
 }
 
 const renderTab = (item: TabItem) => {
-  return h(TabItemCom, { item })
+  return h(TabItemCom, {
+    item,
+    onContextMenu: handleContextMenu,
+  })
 }
 
 const dropdownOpt = computed<DropdownOption[]>(() => [
@@ -39,9 +60,16 @@ const handleActionSelect = (key: string) => {
     closeTab()
   else if (key === 'refreshCurrent')
     refresh()
+
+  contextParams.showDropdown = false
 }
 const handleChange = (val: string) => {
   router.push(val)
+  contextParams.showDropdown = false
+}
+
+const onClickOutside = () => {
+  contextParams.showDropdown = false
 }
 </script>
 
@@ -75,4 +103,14 @@ const handleChange = (val: string) => {
       </div>
     </template>
   </n-tabs>
+  <n-dropdown
+    placement="bottom-start"
+    trigger="manual"
+    :x="contextParams.x"
+    :y="contextParams.y"
+    :options="dropdownOpt"
+    :show="contextParams.showDropdown"
+    :on-clickoutside="onClickOutside"
+    @select="handleActionSelect"
+  />
 </template>
