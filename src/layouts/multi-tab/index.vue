@@ -71,6 +71,7 @@ const handleChange = (val: string) => {
 const onClickOutside = () => {
   contextParams.showDropdown = false
 }
+// TODO BUG -> Added non-passive event listener to a scroll-blocking 'wheel' event. Consider marking event handler as 'passive' to make the page more responsive.
 </script>
 
 <template>
