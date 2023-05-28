@@ -1,17 +1,19 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { Layout } from '@/layouts'
 
+export const ROOT_ROUT_REDIRECT_PATH = '/dashboard'
+
 export const rootRouter: RouteRecordRaw = {
   path: '/',
   name: 'default-router',
-  redirect: '/dashboard',
+  redirect: ROOT_ROUT_REDIRECT_PATH,
   component: Layout,
   children: [],
 }
 export const dynamicRoutes: RouteRecordRaw[] = [{
   path: '/',
   name: 'index',
-  redirect: '/dashboard',
+  redirect: ROOT_ROUT_REDIRECT_PATH,
   children: [
     {
       path: '/home',

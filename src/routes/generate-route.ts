@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { rootRouter } from '@/routes/dynamic-routes'
+import { omit } from 'lodash-es'
+import { ROOT_ROUT_REDIRECT_PATH, rootRouter } from '@/routes/dynamic-routes'
 import modules from '@/routes/modules'
 import type { MenuInfo } from '@/api/user'
 import { userGetMenusApi } from '@/api/user'
@@ -17,6 +18,28 @@ const getComponent = (component?: string) => {
     return defineComponent[component]
 
   return (modules as Record<string, any>)[component]
+}
+
+const flatRouteData = (routes: RouteRecordRaw[]) => {
+  const flatRoutes: RouteRecordRaw[] = []
+  for (const route of routes) {
+    flatRoutes.push(omit(route, 'children') as RouteRecordRaw)
+    if (route.children && route.children.length > 0)
+      flatRoutes.push(...flatRouteData(route.children))
+  }
+  return flatRoutes
+}
+
+export const flatRoutes = (routes: RouteRecordRaw[]) => {
+  const rootRoute: RouteRecordRaw = {
+    path: '/',
+    name: 'root',
+    component: defineComponent.RouteView,
+    redirect: ROOT_ROUT_REDIRECT_PATH,
+    children: [],
+  }
+  rootRoute.children = flatRouteData(routes)
+  return rootRoute
 }
 
 const generator = (menuInfo: MenuInfo[], pid?: number) => {

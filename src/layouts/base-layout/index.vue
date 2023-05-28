@@ -68,7 +68,7 @@ watchEffect(() => {
       :sider-collapsed-width="layout.siderCollapsedWidth"
     >
       <template #headerRight>
-        <router-view />
+        <RightContent />
       </template>
 
       <WrapContent />

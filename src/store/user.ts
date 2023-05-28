@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { generateMenu } from './../routes/generate-menu'
-import { generateRoute } from './../routes/generate-route'
+import { flatRoutes, generateRoute } from './../routes/generate-route'
 import { dynamicRoutes, rootRouter } from '@/routes/dynamic-routes'
 import { userGetInfoApi, userLoginApi } from '@/api/user'
 import type { UserAccountLoginParams, UserInfo, UserMobileLoginParams } from '@/api/user'
@@ -56,9 +56,10 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const generateRoutes = async () => {
+    const flatRouteData = flatRoutes(dynamicRoutes)
     const currentRouter = {
       ...rootRouter,
-      children: dynamicRoutes,
+      children: [flatRouteData],
     }
     routerRecords.value = dynamicRoutes
     return currentRouter
@@ -66,8 +67,11 @@ export const useUserStore = defineStore('user', () => {
 
   const generateDynamicRoutes = async () => {
     const routerData = await generateRoute()
-    if (routerData)
+    if (routerData) {
       routerRecords.value = routerData.children
+      const flatRouteData = flatRoutes(routerData.children)
+      routerData.children = [flatRouteData]
+    }
 
     return routerData
   }
