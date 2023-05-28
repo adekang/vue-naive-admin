@@ -26,6 +26,8 @@ export interface MenuInfo {
   icon?: string
   // 重定向
   redirect?: string
+  // 保活
+  keepAlive?: boolean
 }
 
 export const userApi = {

@@ -6,6 +6,8 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Unocss from 'unocss/vite'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
 // https://vitejs.dev/config/
 
 const baseUrl = fileURLToPath(new URL('./src', import.meta.url))
@@ -27,6 +29,7 @@ export default defineConfig(({ mode }) => {
       vue({
         reactivityTransform: true,
       }),
+      vueJsx(),
       Unocss(),
       AutoImport({
         imports: [

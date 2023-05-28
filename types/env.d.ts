@@ -1,12 +1,4 @@
 /// <reference types="vite/client" />
-
-import 'vue-router';
-
-declare module 'vue-router' {
-  interface RouteMeta {
-    title?: string; // 先仅扩展一个title后续再补充
-  }
-}
 declare module '*.vue' {
   import type {DefineComponent} from 'vue';
   const component: DefineComponent<{}, {}, any>;
@@ -23,12 +15,4 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
-declare module 'vue-router' {
-  interface RouteMeta {
-    title?: string;
-    id?: number;
-    pid?: number;
-    icon?: string;
-  }
-}
 

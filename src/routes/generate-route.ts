@@ -61,6 +61,7 @@ const generator = (menuInfo: MenuInfo[], pid?: number) => {
         icon: currentMenu.icon,
         id: currentMenu.id,
         pid: currentMenu.pid,
+        keepAlive: currentMenu.keepAlive,
       },
       children: generator(menuInfo, currentMenu.id),
     }
