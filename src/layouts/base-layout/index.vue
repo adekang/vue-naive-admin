@@ -16,30 +16,18 @@ const appStore = useAppstore()
 const userStore = useUserStore()
 const menuOptions = computed(() => userStore.menusData)
 
-const {
-  layout,
-  visible,
-  layoutList,
-  layoutStyleList,
-  themeList,
-} = storeToRefs(appStore)
+const { layout, visible, layoutList, layoutStyleList, themeList } =
+  storeToRefs(appStore)
 
-const {
-  isMobile,
-  isDesktop,
-  isPad,
-} = useQueryBreakpoints()
+const { isMobile, isDesktop, isPad } = useQueryBreakpoints()
 
 const { active } = useMenuState()
 
 watchEffect(() => {
-  if (isDesktop.value)
-    appStore.toggleCollapsed(false)
-  else if (isPad.value)
-    appStore.toggleCollapsed(true)
+  if (isDesktop.value) appStore.toggleCollapsed(false)
+  else if (isPad.value) appStore.toggleCollapsed(true)
 
-  if (isMobile.value)
-    appStore.toggleCollapsed(false)
+  if (isMobile.value) appStore.toggleCollapsed(false)
 })
 </script>
 
@@ -87,9 +75,7 @@ watchEffect(() => {
         <RightContent />
       </template>
       <template #headerLeft>
-        <div>
-          测试左侧插槽
-        </div>
+        <div>测试左侧插槽</div>
       </template>
       <WrapContent />
     </SideLayout>
@@ -103,9 +89,7 @@ watchEffect(() => {
         <RightContent />
       </template>
       <template #headerLeft>
-        <div>
-          测试左侧插槽
-        </div>
+        <div>测试左侧插槽</div>
       </template>
       <WrapContent />
     </TopLayout>
@@ -120,6 +104,4 @@ watchEffect(() => {
   />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

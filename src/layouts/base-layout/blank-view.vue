@@ -1,9 +1,5 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>
-    Blank View
-  </div>
+  <div>Blank View</div>
 </template>

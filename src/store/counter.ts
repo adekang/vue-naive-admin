@@ -15,6 +15,6 @@ export const useCounters = defineStore('counter', () => {
     counter,
     increment,
     decrement,
-    double,
+    double
   }
 })

@@ -9,15 +9,10 @@ const router = useRouter()
 const contextParams = reactive({
   x: 0,
   y: 0,
-  showDropdown: false,
+  showDropdown: false
 })
 const state = useMultiTabInject()
-const {
-  tabList,
-  current,
-  closeTab,
-  refresh,
-} = useMultiTab()
+const { tabList, current, closeTab, refresh } = useMultiTab()
 
 const handleClose = (path: string) => {
   closeTab(path)
@@ -39,7 +34,7 @@ const handleContextMenu = (e: MouseEvent) => {
 const renderTab = (item: TabItem) => {
   return h(TabItemCom, {
     item,
-    onContextMenu: handleContextMenu,
+    onContextMenu: handleContextMenu
   })
 }
 
@@ -48,18 +43,16 @@ const dropdownOpt = computed<DropdownOption[]>(() => [
     label: '关闭当前页',
     key: 'closeCurrent',
     // 如果当前只剩下一页的话，我们是不允许关闭的，所以我们就通过计算属性的方式
-    disabled: tabList.value?.length === 1,
+    disabled: tabList.value?.length === 1
   },
   {
     label: '刷新当前页',
-    key: 'refreshCurrent',
-  },
+    key: 'refreshCurrent'
+  }
 ])
 const handleActionSelect = (key: string) => {
-  if (key === 'closeCurrent')
-    closeTab()
-  else if (key === 'refreshCurrent')
-    refresh()
+  if (key === 'closeCurrent') closeTab()
+  else if (key === 'refreshCurrent') refresh()
 
   contextParams.showDropdown = false
 }
@@ -96,7 +89,11 @@ const onClickOutside = () => {
     />
     <template #suffix>
       <div class="mr-12px">
-        <n-dropdown trigger="click" :options="dropdownOpt" @select="handleActionSelect">
+        <n-dropdown
+          trigger="click"
+          :options="dropdownOpt"
+          @select="handleActionSelect"
+        >
           <n-icon size="16" class="cursor-pointer">
             <MoreOutlined />
           </n-icon>

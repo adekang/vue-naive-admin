@@ -34,7 +34,7 @@ export const userApi = {
   userLoginUrl: '/user/login',
   userSendCodeUrl: '/user/send-code',
   userGetInfoUrl: '/user/info',
-  userMenusUrl: '/user/menus1',
+  userMenusUrl: '/user/menus1'
   // userMenusUrl: '/user/menu-lang',
 }
 //  Pick提取类型
@@ -58,8 +58,13 @@ export interface UserLoginResult {
   token: string
 }
 
-export const userLoginApi = (params: UserAccountLoginParams | UserMobileLoginParams) => {
-  return usePost<UserMobileLoginParams | UserAccountLoginParams, UserLoginResult>(userApi.userLoginUrl, params)
+export const userLoginApi = (
+  params: UserAccountLoginParams | UserMobileLoginParams
+) => {
+  return usePost<
+    UserMobileLoginParams | UserAccountLoginParams,
+    UserLoginResult
+  >(userApi.userLoginUrl, params)
 }
 
 export const userSendCodeApi = (params: UserSendCodeParams) => {

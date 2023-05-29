@@ -3,7 +3,11 @@ import { generateMenu } from './../routes/generate-menu'
 import { flatRoutes, generateRoute } from './../routes/generate-route'
 import { dynamicRoutes, rootRouter } from '@/routes/dynamic-routes'
 import { userGetInfoApi, userLoginApi } from '@/api/user'
-import type { UserAccountLoginParams, UserInfo, UserMobileLoginParams } from '@/api/user'
+import type {
+  UserAccountLoginParams,
+  UserInfo,
+  UserMobileLoginParams
+} from '@/api/user'
 import { useAuthorization } from '@/compsables/authorization'
 import { useGlobalConfig } from '@/compsables/global-config'
 import i18n from '@/locales'
@@ -26,21 +30,20 @@ export const useUserStore = defineStore('user', () => {
     token.value = key
   }
 
-  const login = async (params: UserAccountLoginParams | UserMobileLoginParams) => {
+  const login = async (
+    params: UserAccountLoginParams | UserMobileLoginParams
+  ) => {
     try {
       const { data } = await userLoginApi(params)
-      if (data?.token)
-        setToken(data.token)
-    }
-    catch (error) {
+      if (data?.token) setToken(data.token)
+    } catch (error) {
       console.error(`请求登录错误：${error}`)
     }
   }
 
   const getUserInfo = async () => {
     const { data } = await userGetInfoApi()
-    if (data)
-      setUserInfo(data)
+    if (data) setUserInfo(data)
   }
 
   const logout = async () => {
@@ -50,8 +53,8 @@ export const useUserStore = defineStore('user', () => {
     await router.replace({
       path: '/login',
       query: {
-        redirect: router.currentRoute.value.path,
-      },
+        redirect: router.currentRoute.value.path
+      }
     })
   }
 
@@ -59,7 +62,7 @@ export const useUserStore = defineStore('user', () => {
     const flatRouteData = flatRoutes(dynamicRoutes)
     const currentRouter = {
       ...rootRouter,
-      children: [flatRouteData],
+      children: [flatRouteData]
     }
     routerRecords.value = dynamicRoutes
     return currentRouter
@@ -86,6 +89,6 @@ export const useUserStore = defineStore('user', () => {
     getUserInfo,
     logout,
     generateRoutes,
-    generateDynamicRoutes,
+    generateDynamicRoutes
   }
 })

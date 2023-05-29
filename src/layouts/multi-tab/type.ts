@@ -18,4 +18,5 @@ export interface MultiTabState {
   componentCache: Record<string, DefineComponent>
 }
 
-export const MULTI_TAB_STATE_KEY: InjectionKey<MultiTabState> = Symbol('multiTabState')
+export const MULTI_TAB_STATE_KEY: InjectionKey<MultiTabState> =
+  Symbol('multiTabState')

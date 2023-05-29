@@ -3,33 +3,34 @@ import { BellOutlined } from '@vicons/antd'
 import type { DropdownOption } from 'naive-ui'
 import Content from './content.vue'
 import Footer from './footer.vue'
-withDefaults(defineProps<{
-  count?: number
-  maxCount?: number
-}>(), {
-  maxCount: 99,
-})
+withDefaults(
+  defineProps<{
+    count?: number
+    maxCount?: number
+  }>(),
+  {
+    maxCount: 99
+  }
+)
 
 const options = ref<DropdownOption[]>([
   {
     key: 'content',
     type: 'render',
-    render: () => h(Content),
+    render: () => h(Content)
   },
   {
     key: 'header-divider',
-    type: 'divider',
+    type: 'divider'
   },
   {
     key: 'footer',
     type: 'render',
-    render: () => h(Footer),
-  },
+    render: () => h(Footer)
+  }
 ])
 
-const handleSelect = () => {
-
-}
+const handleSelect = () => {}
 </script>
 
 <template>
@@ -44,6 +45,4 @@ const handleSelect = () => {
   <div class="flex cursor-pointer" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

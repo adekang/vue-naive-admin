@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { menuProps } from 'naive-ui'
 const props = defineProps({
-  ...menuProps,
+  ...menuProps
 })
 </script>
 
@@ -9,6 +9,4 @@ const props = defineProps({
   <n-menu v-bind="props" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

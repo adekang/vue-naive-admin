@@ -7,6 +7,6 @@ export default {
   ...global,
   naiveUI: {
     locale: enUS,
-    dateLocale: dateEnUS,
-  },
+    dateLocale: dateEnUS
+  }
 }

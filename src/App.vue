@@ -7,10 +7,7 @@ import { useAppstore } from '@/store/app'
 
 const appStore = useAppstore()
 
-const {
-  layoutTheme,
-  overridesTheme,
-} = storeToRefs(appStore)
+const { layoutTheme, overridesTheme } = storeToRefs(appStore)
 useAutoDark()
 useMenuStateProvider()
 useMultiTabProvider()

@@ -7,6 +7,4 @@
   <n-input />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

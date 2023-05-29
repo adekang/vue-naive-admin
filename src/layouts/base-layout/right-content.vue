@@ -14,42 +14,49 @@ const appLocale = useAppLocale()
 const userStore = useUserStore()
 
 const avatar = computed(() => userStore.userInfo?.avatar)
-const nickName = computed(() => userStore.userInfo?.nickname ?? userStore.userInfo?.username)
-const renderIcon = (icon: Component): VNodeChild => h(NIcon, null, {
-  default: () => h(icon),
-})
+const nickName = computed(
+  () => userStore.userInfo?.nickname ?? userStore.userInfo?.username
+)
+const renderIcon = (icon: Component): VNodeChild =>
+  h(NIcon, null, {
+    default: () => h(icon)
+  })
 const userOptions = ref<DropdownOption[]>([
   {
     label: () => t('global.layout.header.right.user.center'),
     key: 'user-center',
-    icon: () => renderIcon(UserOutlined),
+    icon: () => renderIcon(UserOutlined)
   },
   {
     label: () => t('global.layout.header.right.user.setting'),
     key: 'user-setting',
-    icon: () => renderIcon(SettingOutlined),
+    icon: () => renderIcon(SettingOutlined)
   },
   {
     key: 'header-divider',
-    type: 'divider',
+    type: 'divider'
   },
   {
     label: () => t('global.layout.header.right.logout'),
     icon: () => renderIcon(LogoutOutlined),
-    key: 'logout',
-  },
+    key: 'logout'
+  }
 ])
 
 const handleSelect = (value: string) => {
-  if (value === 'logout')
-    userStore.logout()
+  if (value === 'logout') userStore.logout()
 }
 </script>
 
 <template>
   <n-space align="center" size="large">
     <Notify />
-    <SelectUser :avatar="avatar" :options="userOptions" :nickname="nickName" @select="handleSelect" />
+    <SelectUser
+      :avatar="avatar"
+      :options="userOptions"
+      :nickname="nickName"
+      @select="handleSelect"
+    />
     <SelectLang v-model:value="appLocale" />
   </n-space>
 </template>

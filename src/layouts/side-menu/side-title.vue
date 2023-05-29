@@ -5,9 +5,13 @@ import type { RouteRecordRaw } from 'vue-router'
 const props = defineProps<{ route: RouteRecordRaw }>()
 const title = computed(() => props.route.meta?.title)
 const path = computed(() => props.route.path)
-const hasChildren = computed(() => props.route.children && props.route.children?.length > 0)
+const hasChildren = computed(
+  () => props.route.children && props.route.children?.length > 0
+)
 const isFullPath = computed(() => path.value.startsWith('http'))
-const target = computed(() => props?.route?.meta?.target as string ?? '_blank')
+const target = computed(
+  () => (props?.route?.meta?.target as string) ?? '_blank'
+)
 </script>
 
 <template>

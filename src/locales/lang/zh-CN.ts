@@ -7,6 +7,6 @@ export default {
   ...global,
   naiveUI: {
     locale: zhCN,
-    dateLocale: dateZhCN,
-  },
+    dateLocale: dateZhCN
+  }
 }

@@ -11,13 +11,12 @@ export const MultiTabConsumer = defineComponent({
 
     const getCurrentItem = () => {
       const path = route.path
-      return state.tabList.find(item => item.path === path)
+      return state.tabList.find((item) => item.path === path)
     }
 
     return () => {
       const component = slots?.default?.()
-      if (!component)
-        return null
+      if (!component) return null
 
       let currentItem = getCurrentItem()
       const componentCache = toRaw(state.componentCache)
@@ -26,7 +25,7 @@ export const MultiTabConsumer = defineComponent({
           path: route.path,
           tabTitle: route.meta.title,
           route: omit(route, ['matched']),
-          key: state.guid(),
+          key: state.guid()
         }
         state.tabList?.push(currentItem)
       }
@@ -36,23 +35,23 @@ export const MultiTabConsumer = defineComponent({
         exclude.push(currentItem.key!)
 
       // eslint-disable-next-line vue/one-component-per-file
-      const NewComp = componentCache[currentItem.key!] || defineComponent({
-        name: currentItem.key,
-        setup() {
-          return () => (<> {component} </>)
-        },
-
-      })
-      if (exclude.find(item => item === currentItem?.key))
+      const NewComp =
+        componentCache[currentItem.key!] ||
+        defineComponent({
+          name: currentItem.key,
+          setup() {
+            return () => <> {component} </>
+          }
+        })
+      if (exclude.find((item) => item === currentItem?.key))
         delete componentCache[currentItem.key!]
-      else
-        componentCache[currentItem.key!] = NewComp
+      else componentCache[currentItem.key!] = NewComp
 
       return (
         <KeepAlive exclude={exclude}>
-          <NewComp key={currentItem.key + route.fullPath}/>
+          <NewComp key={currentItem.key + route.fullPath} />
         </KeepAlive>
       )
     }
-  },
+  }
 })

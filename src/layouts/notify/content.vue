@@ -10,11 +10,14 @@ import Container from '@/layouts/notify/container.vue'
     <n-tab-pane name="notify" tab="通知">
       <Container>
         <NotifyItem
-          title="测试" desc="你好呀"
+          title="测试"
+          desc="你好呀"
           avatar="https://biox.stanford.edu/files/styles/profile_thumbnail/public/carla_shatz.webp?orig=png"
         />
         <NotifyItem
-          read title="测试" desc="你好呀"
+          read
+          title="测试"
+          desc="你好呀"
           avatar="https://biox.stanford.edu/files/styles/profile_thumbnail/public/carla_shatz.webp?orig=png"
         />
       </Container>
@@ -32,6 +35,4 @@ import Container from '@/layouts/notify/container.vue'
   </n-tabs>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

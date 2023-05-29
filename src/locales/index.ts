@@ -12,9 +12,8 @@ const i18n = createI18n({
   locale: defaultLocale,
   fallbackLocale: defaultLocale,
   messages: {
-    'zh-CN': zhCN,
-  },
-
+    'zh-CN': zhCN
+  }
 })
 
 export const loadLanguageAsync = async (lang: string = defaultLocale) => {
@@ -24,8 +23,7 @@ export const loadLanguageAsync = async (lang: string = defaultLocale) => {
       const messages = await import(`./lang/${lang}.ts`)
       i18n.global.setLocaleMessage(lang, messages.default)
     }
-  }
-  catch (e) {
+  } catch (e) {
     console.warn('load locale error:', e)
   }
 

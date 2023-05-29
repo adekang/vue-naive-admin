@@ -1,18 +1,17 @@
 <script lang="ts" setup>
-import { GithubOutlined, LockOutlined, MobileOutlined, UserOutlined } from '@vicons/antd'
+import {
+  GithubOutlined,
+  LockOutlined,
+  MobileOutlined,
+  UserOutlined
+} from '@vicons/antd'
 import { useAccountLogin } from './composables/account-login'
 import { useMobileLogin } from './composables/moblie-login'
 import { useUserStore } from '@/store/user'
 import { BlankLayout } from '@/layouts'
 
 const userStore = useUserStore()
-const {
-  formRef,
-  model,
-  rules,
-  login,
-  loading,
-} = useAccountLogin()
+const { formRef, model, rules, login, loading } = useAccountLogin()
 
 const {
   mModel,
@@ -22,7 +21,7 @@ const {
   counterState,
   counter,
   mRules,
-  sendCode,
+  sendCode
 } = useMobileLogin()
 </script>
 
@@ -31,7 +30,7 @@ const {
     <!-- 头部 -->
     <div flex="~ col" class="py-20px items-center justify-center">
       <div class="flex items-center">
-        <img src="@/assets/vue.svg" class="h-40px w-40px" alt="logo">
+        <img src="@/assets/vue.svg" class="h-40px w-40px" alt="logo" />
         <span class="ml-3 text-33px font-600">Naive Admin</span>
       </div>
       <div class="flex items-center mt-12px mb-40px text-[var(--text-color-3)]">
@@ -40,12 +39,25 @@ const {
     </div>
     <!-- 登录部分 -->
     <div class="w-350px mx-auto">
-      <n-tabs default-value="account" type="line" justify-content="space-evenly">
+      <n-tabs
+        default-value="account"
+        type="line"
+        justify-content="space-evenly"
+      >
         <!-- 账号密码登录 -->
         <n-tab-pane name="account" :tab="$t('login.account.tab')">
-          <n-form ref="formRef" :model="model" :rules="rules" label-placement="left" label-align="left">
+          <n-form
+            ref="formRef"
+            :model="model"
+            :rules="rules"
+            label-placement="left"
+            label-align="left"
+          >
             <n-form-item-row path="username">
-              <n-input v-model:value="model.username" :placeholder="$t('login.username.placeholder')">
+              <n-input
+                v-model:value="model.username"
+                :placeholder="$t('login.username.placeholder')"
+              >
                 <template #prefix>
                   <n-icon :component="UserOutlined" />
                 </template>
@@ -53,7 +65,9 @@ const {
             </n-form-item-row>
             <n-form-item-row path="password">
               <n-input
-                v-model:value="model.password" type="password" show-password-on="click"
+                v-model:value="model.password"
+                type="password"
+                show-password-on="click"
                 :placeholder="$t('login.password.placeholder')"
               >
                 <template #prefix>
@@ -72,16 +86,32 @@ const {
               </div>
             </n-form-item-row>
           </n-form>
-          <n-button type="primary" block secondary strong :loading="loading" @click="login">
+          <n-button
+            type="primary"
+            block
+            secondary
+            strong
+            :loading="loading"
+            @click="login"
+          >
             {{ $t('login.login') }}
           </n-button>
         </n-tab-pane>
 
         <!-- 手机号登录 -->
         <n-tab-pane name="mobile" :tab="$t('login.mobile.tab')">
-          <n-form ref="mFormRef" :model="mModel" :rules="mRules" label-align="left" label-placement="left">
+          <n-form
+            ref="mFormRef"
+            :model="mModel"
+            :rules="mRules"
+            label-align="left"
+            label-placement="left"
+          >
             <n-form-item-row path="mobile">
-              <n-input v-model:value="mModel.mobile" :placeholder="$t('login.mobile.placeholder')">
+              <n-input
+                v-model:value="mModel.mobile"
+                :placeholder="$t('login.mobile.placeholder')"
+              >
                 <template #prefix>
                   <n-icon :component="MobileOutlined" />
                 </template>
@@ -89,14 +119,23 @@ const {
             </n-form-item-row>
             <n-form-item-row path="code">
               <n-input-group>
-                <n-input v-model:value="mModel.code" :placeholder="$t('login.mobile.verification-code.placeholder')">
+                <n-input
+                  v-model:value="mModel.code"
+                  :placeholder="
+                    $t('login.mobile.verification-code.placeholder')
+                  "
+                >
                   <template #prefix>
                     <n-icon :component="LockOutlined" />
                   </template>
                 </n-input>
                 <n-button :disabled="counterState" @click="sendCode">
                   {{
-                    counterState ? `${counter}s${$t('login.mobile.resend')}` : $t('login.mobile.verification-code.get-verification-code')
+                    counterState
+                      ? `${counter}s${$t('login.mobile.resend')}`
+                      : $t(
+                          'login.mobile.verification-code.get-verification-code'
+                        )
                   }}
                 </n-button>
               </n-input-group>
@@ -112,7 +151,14 @@ const {
               </div>
             </n-form-item-row>
           </n-form>
-          <n-button type="primary" :loading="mLoading" block secondary strong @click="mLogin">
+          <n-button
+            type="primary"
+            :loading="mLoading"
+            block
+            secondary
+            strong
+            @click="mLogin"
+          >
             {{ $t('login.login') }}
           </n-button>
         </n-tab-pane>
@@ -127,5 +173,5 @@ const {
         />
       </div>
     </div>
-  </blanklayout>
+  </BlankLayout>
 </template>

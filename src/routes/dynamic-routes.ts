@@ -8,20 +8,22 @@ export const rootRouter: RouteRecordRaw = {
   name: 'default-router',
   redirect: ROOT_ROUT_REDIRECT_PATH,
   component: Layout,
-  children: [],
+  children: []
 }
-export const dynamicRoutes: RouteRecordRaw[] = [{
-  path: '/',
-  name: 'index',
-  redirect: ROOT_ROUT_REDIRECT_PATH,
-  children: [
-    {
-      path: '/home',
-      name: 'Home',
-      component: () => import('@/pages/index.vue'),
-      meta: {
-        title: 'Home',
-      },
-    },
-  ],
-}]
+export const dynamicRoutes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    name: 'index',
+    redirect: ROOT_ROUT_REDIRECT_PATH,
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: () => import('@/pages/index.vue'),
+        meta: {
+          title: 'Home'
+        }
+      }
+    ]
+  }
+]

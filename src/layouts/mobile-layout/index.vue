@@ -1,22 +1,31 @@
 <script setup lang="ts">
 import { MenuFoldOutlined } from '@vicons/antd'
-import { LayoutBase, LayoutContent, LayoutHeader, Logo, Title } from '@/layouts/common'
+import {
+  LayoutBase,
+  LayoutContent,
+  LayoutHeader,
+  Logo,
+  Title
+} from '@/layouts/common'
 
-const props = withDefaults(defineProps<{
-  headerHeight?: number
-  logo?: string
-  title?: string
-  headerInverted?: boolean
-  drawerInverted?: boolean
-  visible?: boolean
-  logoVisible?: boolean
-}>(), {
-  headerHeight: 48,
-  visible: false,
-  headerInverted: false,
-  drawerInverted: false,
-  logoVisible: true,
-})
+const props = withDefaults(
+  defineProps<{
+    headerHeight?: number
+    logo?: string
+    title?: string
+    headerInverted?: boolean
+    drawerInverted?: boolean
+    visible?: boolean
+    logoVisible?: boolean
+  }>(),
+  {
+    headerHeight: 48,
+    visible: false,
+    headerInverted: false,
+    drawerInverted: false,
+    logoVisible: true
+  }
+)
 
 const emits = defineEmits(['update:visible'])
 const onShow = () => {
@@ -39,9 +48,7 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
         </n-icon>
       </div>
       <slot name="headerRight">
-        <div>
-          右边
-        </div>
+        <div>右边</div>
       </slot>
     </LayoutHeader>
     <LayoutContent>

@@ -27,7 +27,7 @@ const appLocale = useAppLocale()
 
 <style scoped>
 .pro-admin-login-container {
-  background-image: url("@/assets/login-bg.svg");
+  background-image: url('@/assets/login-bg.svg');
   background-repeat: no-repeat;
   background-position: center 110px;
   background-size: 100%;

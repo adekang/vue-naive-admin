@@ -35,6 +35,4 @@ defineProps<{
   </n-list-item>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

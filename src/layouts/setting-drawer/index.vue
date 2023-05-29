@@ -6,21 +6,28 @@ import type { LayoutType } from '@/config/layout-theme'
 import CheckboxLayout from '@/layouts/setting-drawer/checkbox-layout.vue'
 import Container from '@/layouts/setting-drawer/container.vue'
 
-const props = withDefaults(defineProps<{
-  floatTop?: number | string
-  drawerWidth?: number | string
-  layout?: 'mix' | 'side' | 'top'
-  layoutStyle?: 'light' | 'inverted' | 'dark'
-  layoutList?: LayoutType[]
-  layoutStyleList?: LayoutType[]
-  themeList?: ThemeType[]
-  theme?: string
-}>(), {
-  floatTop: 240,
-  drawerWidth: 300,
-})
+const props = withDefaults(
+  defineProps<{
+    floatTop?: number | string
+    drawerWidth?: number | string
+    layout?: 'mix' | 'side' | 'top'
+    layoutStyle?: 'light' | 'inverted' | 'dark'
+    layoutList?: LayoutType[]
+    layoutStyleList?: LayoutType[]
+    themeList?: ThemeType[]
+    theme?: string
+  }>(),
+  {
+    floatTop: 240,
+    drawerWidth: 300
+  }
+)
 
-const emit = defineEmits(['update:theme', 'update:layout', 'update:layoutStyle'])
+const emit = defineEmits([
+  'update:theme',
+  'update:layout',
+  'update:layoutStyle'
+])
 const onChangeTheme = (item: string) => {
   emit('update:theme', item)
 }
@@ -40,7 +47,7 @@ const handClick = (val: boolean) => {
 const cssVar = computed(() => {
   return {
     '--pro-admin-float-top': `${props.floatTop}px`,
-    '--pro-admin-drawer-width': `${props.drawerWidth}px`,
+    '--pro-admin-drawer-width': `${props.drawerWidth}px`
   }
 })
 </script>
@@ -49,7 +56,12 @@ const cssVar = computed(() => {
   <teleport to="body">
     <div :style="cssVar" class="fixed top-[var(--pro-admin-float-top)] right-0">
       <!---->
-      <n-button size="large" type="primary" class="b-rd-tr-0! b-rd-br-0!" @click="handClick(true)">
+      <n-button
+        size="large"
+        type="primary"
+        class="b-rd-tr-0! b-rd-br-0!"
+        @click="handClick(true)"
+      >
         <template #icon>
           <n-icon :size="24">
             <SettingOutlined />
@@ -60,7 +72,10 @@ const cssVar = computed(() => {
   </teleport>
   <n-drawer v-model:show="show" width="300">
     <n-drawer-content>
-      <Container v-if="layoutList" :title="$t('global.layout.setting.drawer.layout')">
+      <Container
+        v-if="layoutList"
+        :title="$t('global.layout.setting.drawer.layout')"
+      >
         <n-space size="large">
           <template v-for="item in layoutList" :key="item.key">
             <CheckboxLayout
@@ -72,7 +87,10 @@ const cssVar = computed(() => {
           </template>
         </n-space>
       </Container>
-      <Container v-if="layoutStyleList" :title="$t('global.layout.setting.drawer.style')">
+      <Container
+        v-if="layoutStyleList"
+        :title="$t('global.layout.setting.drawer.style')"
+      >
         <n-space size="large">
           <template v-for="item in layoutStyleList" :key="item.id">
             <CheckboxLayout
@@ -87,7 +105,10 @@ const cssVar = computed(() => {
         </n-space>
       </Container>
       <n-divider />
-      <Container v-if="themeList" :title="$t('global.layout.setting.drawer.theme')">
+      <Container
+        v-if="themeList"
+        :title="$t('global.layout.setting.drawer.theme')"
+      >
         <n-space size="large">
           <template v-for="item in themeList" :key="item.key">
             <CheckboxTheme
@@ -104,7 +125,12 @@ const cssVar = computed(() => {
       :style="cssVar"
       class="absolute top-[var(--pro-admin-float-top)] right-[var(--pro-admin-drawer-width)]"
     >
-      <n-button size="large" type="primary" class="b-rd-tr-0! b-rd-br-0!" @click="handClick(false)">
+      <n-button
+        size="large"
+        type="primary"
+        class="b-rd-tr-0! b-rd-br-0!"
+        @click="handClick(false)"
+      >
         <template #icon>
           <n-icon :size="24">
             <CloseOutlined />
@@ -115,6 +141,4 @@ const cssVar = computed(() => {
   </n-drawer>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

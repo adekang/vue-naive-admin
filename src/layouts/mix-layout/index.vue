@@ -1,27 +1,36 @@
 <script setup lang="ts">
 import type { MenuOption } from 'naive-ui'
-import { LayoutContent, LayoutHeader, LayoutSider, Logo, Title } from '@/layouts/common'
+import {
+  LayoutContent,
+  LayoutHeader,
+  LayoutSider,
+  Logo,
+  Title
+} from '@/layouts/common'
 import SideMenu from '@/layouts/side-menu/index.vue'
 
-const props = withDefaults(defineProps<{
-  headerHeight?: number
-  logo?: string
-  title?: string
-  siderWidth?: number
-  siderCollapsedWidth?: number
-  showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
-  collapsed?: boolean
-  active?: string
-  options?: MenuOption[]
-  collapsedIconSize?: number
-  expandedKeys?: string[]
-}>(), {
-  headerHeight: 48,
-  siderWidth: 240,
-  siderCollapsedWidth: 48,
-  collapsed: false,
-  collapsedIconSize: 22,
-})
+const props = withDefaults(
+  defineProps<{
+    headerHeight?: number
+    logo?: string
+    title?: string
+    siderWidth?: number
+    siderCollapsedWidth?: number
+    showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
+    collapsed?: boolean
+    active?: string
+    options?: MenuOption[]
+    collapsedIconSize?: number
+    expandedKeys?: string[]
+  }>(),
+  {
+    headerHeight: 48,
+    siderWidth: 240,
+    siderCollapsedWidth: 48,
+    collapsed: false,
+    collapsedIconSize: 22
+  }
+)
 defineEmits(['update:collapsed', 'update:active', 'update:expandedKeys'])
 const contentHeightVar = computed(() => `calc(100vh - ${props.headerHeight}px)`)
 const headerHeightVar = computed(() => `${props.headerHeight}px`)
@@ -29,15 +38,16 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
 
 <template>
   <n-layout class="h-screen">
-    <LayoutHeader inverted class="pro-admin-mix-layout-header flex items-center px-4 justify-between">
+    <LayoutHeader
+      inverted
+      class="pro-admin-mix-layout-header flex items-center px-4 justify-between"
+    >
       <div class="flex items-center">
         <Logo :src="logo" />
         <Title :title="title" />
       </div>
       <slot name="headerRight">
-        <div>
-          右边
-        </div>
+        <div>右边</div>
       </slot>
     </LayoutHeader>
     <n-layout has-sider class="pro-admin-mix-layout-content">

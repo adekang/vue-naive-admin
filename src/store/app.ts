@@ -8,7 +8,9 @@ import type { ThemeType } from '@/config/theme'
 import { colors, darkColors } from '@/config/theme'
 
 export const useAppstore = defineStore('app', () => {
-  const defaultTheme = import.meta.env.DEV ? layoutThemeConfig : useLayoutTheme()
+  const defaultTheme = import.meta.env.DEV
+    ? layoutThemeConfig
+    : useLayoutTheme()
   const layout = reactive(unref(defaultTheme))
   const visible = ref(false)
   const toggleVisible = (val: boolean) => {
@@ -18,12 +20,13 @@ export const useAppstore = defineStore('app', () => {
     layout.collapsed = val
   }
 
-  watch(() => layout.layoutStyle, () => {
-    if (layout.layoutStyle === 'dark')
-      toggleDark(true)
-    else
-      toggleDark(false)
-  })
+  watch(
+    () => layout.layoutStyle,
+    () => {
+      if (layout.layoutStyle === 'dark') toggleDark(true)
+      else toggleDark(false)
+    }
+  )
   const updateLayout = (val: LayoutType['key']) => {
     layout.layout = val
   }
@@ -39,23 +42,21 @@ export const useAppstore = defineStore('app', () => {
       list.push({
         color: value.common?.primaryColor as string,
         key: colorsKey,
-        title: `global.layout.setting.drawer.theme.${colorsKey}`,
+        title: `global.layout.setting.drawer.theme.${colorsKey}`
       })
     }
     return list
   })
 
   const layoutTheme = computed(() => {
-    if (layout.layoutStyle === 'dark')
-      return darkTheme
+    if (layout.layoutStyle === 'dark') return darkTheme
 
     return undefined
   })
 
   // 主题切换
   const overridesTheme = computed(() => {
-    if (isDark.value)
-      return darkColors[layout.theme]
+    if (isDark.value) return darkColors[layout.theme]
 
     return colors[layout.theme]
   })
@@ -63,20 +64,24 @@ export const useAppstore = defineStore('app', () => {
     layout.theme = val
   }
   const layoutList = computed<LayoutType[]>(() => {
-    return [{
-      id: 'side',
-      key: 'side',
-      title: 'global.layout.setting.drawer.layout.side',
-    }, {
-      id: 'top',
+    return [
+      {
+        id: 'side',
+        key: 'side',
+        title: 'global.layout.setting.drawer.layout.side'
+      },
+      {
+        id: 'top',
 
-      key: 'top',
-      title: 'global.layout.setting.drawer.layout.top',
-    }, {
-      id: 'mix',
-      key: 'mix',
-      title: 'global.layout.setting.drawer.layout.mix',
-    }]
+        key: 'top',
+        title: 'global.layout.setting.drawer.layout.top'
+      },
+      {
+        id: 'mix',
+        key: 'mix',
+        title: 'global.layout.setting.drawer.layout.mix'
+      }
+    ]
   })
 
   const layoutStyleList = computed<LayoutType[]>(() => {
@@ -84,8 +89,8 @@ export const useAppstore = defineStore('app', () => {
       {
         id: 'light',
         key: 'side',
-        title: 'global.layout.setting.drawer.style.light',
-      },
+        title: 'global.layout.setting.drawer.style.light'
+      }
     ]
 
     if (layout.layout !== 'mix') {
@@ -93,18 +98,16 @@ export const useAppstore = defineStore('app', () => {
         id: 'inverted',
         key: 'side',
         inverted: true,
-        title: 'global.layout.setting.drawer.style.inverted',
+        title: 'global.layout.setting.drawer.style.inverted'
       })
-    }
-    else {
-      if (layout.layoutStyle !== 'dark')
-        updateLayoutStyle('light')
+    } else {
+      if (layout.layoutStyle !== 'dark') updateLayoutStyle('light')
     }
     list.push({
       id: 'dark',
       key: 'side',
       title: 'global.layout.setting.drawer.style.dark',
-      dark: true,
+      dark: true
     })
     return list
   })
@@ -112,13 +115,13 @@ export const useAppstore = defineStore('app', () => {
     {
       label: '简体中文',
       key: 'zh-CN',
-      icon: () => '🇨🇳',
+      icon: () => '🇨🇳'
     },
     {
       label: 'English',
       key: 'en-US',
-      icon: () => '🇺🇸',
-    },
+      icon: () => '🇺🇸'
+    }
   ])
   return {
     layout,
@@ -133,6 +136,6 @@ export const useAppstore = defineStore('app', () => {
     updateLayoutStyle,
     toggleVisible,
     toggleCollapsed,
-    localeOptions,
+    localeOptions
   }
 })

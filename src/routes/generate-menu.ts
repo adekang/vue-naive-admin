@@ -9,7 +9,9 @@ export const generateMenu = (routes: RouteRecordRaw[]) => {
     const currentMenu: MenuOption = {
       key: route.path,
       label: () => h(SideTitle, { route }),
-      icon: route.meta?.icon ? () => h(SideIcon, { icon: route.meta?.icon }) : undefined,
+      icon: route.meta?.icon
+        ? () => h(SideIcon, { icon: route.meta?.icon })
+        : undefined
     }
 
     if (route.children && route.children.length > 0)

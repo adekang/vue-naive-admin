@@ -1,22 +1,32 @@
 <script setup lang="ts">
-import { LayoutBase, LayoutContent, LayoutHeader, LayoutSider, Logo, Title } from '@/layouts/common'
+import {
+  LayoutBase,
+  LayoutContent,
+  LayoutHeader,
+  LayoutSider,
+  Logo,
+  Title
+} from '@/layouts/common'
 
-const props = withDefaults(defineProps<{
-  headerHeight?: number
-  logo?: string
-  title?: string
-  siderWidth?: number
-  siderCollapsedWidth?: number
-  showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
-  inverted?: boolean
-  collapsed?: boolean
-}>(), {
-  headerHeight: 48,
-  siderWidth: 240,
-  siderCollapsedWidth: 48,
-  inverted: false,
-  collapsed: false,
-})
+const props = withDefaults(
+  defineProps<{
+    headerHeight?: number
+    logo?: string
+    title?: string
+    siderWidth?: number
+    siderCollapsedWidth?: number
+    showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
+    inverted?: boolean
+    collapsed?: boolean
+  }>(),
+  {
+    headerHeight: 48,
+    siderWidth: 240,
+    siderCollapsedWidth: 48,
+    inverted: false,
+    collapsed: false
+  }
+)
 defineEmits(['update:collapsed'])
 const contentHeightVar = computed(() => `calc(100vh - ${props.headerHeight}px)`)
 const headerHeightVar = computed(() => `${props.headerHeight}px`)
@@ -38,7 +48,9 @@ const headerHeightVar = computed(() => `${props.headerHeight}px`)
       </div>
     </LayoutSider>
     <LayoutBase>
-      <LayoutHeader class="pro-admin-mix-layout-header flex items-center px-4 justify-between">
+      <LayoutHeader
+        class="pro-admin-mix-layout-header flex items-center px-4 justify-between"
+      >
         <slot name="headerLeft">
           <div />
         </slot>

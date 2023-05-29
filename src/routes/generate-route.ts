@@ -7,15 +7,13 @@ import { userGetMenusApi } from '@/api/user'
 
 const defineComponent: Record<string, any> = {
   RouteView: () => import('@/layouts/base-layout/route-view.vue'),
-  BlankView: () => import('@/layouts/base-layout/blank-view.vue'),
+  BlankView: () => import('@/layouts/base-layout/blank-view.vue')
 }
 
 const getComponent = (component?: string) => {
-  if (!component)
-    return defineComponent.RouteView
+  if (!component) return defineComponent.RouteView
 
-  if (component in defineComponent)
-    return defineComponent[component]
+  if (component in defineComponent) return defineComponent[component]
 
   return (modules as Record<string, any>)[component]
 }
@@ -36,7 +34,7 @@ export const flatRoutes = (routes: RouteRecordRaw[]) => {
     name: 'root',
     component: defineComponent.RouteView,
     redirect: ROOT_ROUT_REDIRECT_PATH,
-    children: [],
+    children: []
   }
   rootRoute.children = flatRouteData(routes)
   return rootRoute
@@ -45,10 +43,8 @@ export const flatRoutes = (routes: RouteRecordRaw[]) => {
 const generator = (menuInfo: MenuInfo[], pid?: number) => {
   const routes: RouteRecordRaw[] = []
   let currentMenus: MenuInfo[] = []
-  if (!pid)
-    currentMenus = menuInfo.filter(item => !item.pid)
-  else
-    currentMenus = menuInfo.filter(item => item.pid === pid)
+  if (!pid) currentMenus = menuInfo.filter((item) => !item.pid)
+  else currentMenus = menuInfo.filter((item) => item.pid === pid)
 
   for (const currentMenu of currentMenus) {
     const currentRoute: RouteRecordRaw = {
@@ -61,9 +57,9 @@ const generator = (menuInfo: MenuInfo[], pid?: number) => {
         icon: currentMenu.icon,
         id: currentMenu.id,
         pid: currentMenu.pid,
-        keepAlive: currentMenu.keepAlive,
+        keepAlive: currentMenu.keepAlive
       },
-      children: generator(menuInfo, currentMenu.id),
+      children: generator(menuInfo, currentMenu.id)
     }
     if (!currentRoute.children || currentRoute.children.length < 1)
       delete (currentRoute as RouteRecordRaw).children
@@ -79,7 +75,7 @@ export const generateRoute = async () => {
     const routes = generator(data)
     return {
       ...rootRouter,
-      children: routes,
+      children: routes
     }
   }
 }

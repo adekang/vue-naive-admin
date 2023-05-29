@@ -7,8 +7,7 @@ interface GlobalConfigType {
   dialog?: ReturnType<typeof useDialog>
   loadingBar?: ReturnType<typeof useLoadingBar>
 }
-const globalConfig: GlobalConfigType = {
-}
+const globalConfig: GlobalConfigType = {}
 
 export const useGlobalConfig = (): GlobalConfigType => {
   return globalConfig

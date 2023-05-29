@@ -31,13 +31,12 @@ router.beforeEach(async (to, from, next) => {
       next({
         path: loginRoute,
         query: {
-          redirect: to.path,
-        },
+          redirect: to.path
+        }
       })
       return
     }
-  }
-  else {
+  } else {
     // 如果用户信息不存在，那么就需要获取用户信息
     if (!userStore.userInfo && !allowRoutes.includes(to.path)) {
       try {
@@ -50,29 +49,26 @@ router.beforeEach(async (to, from, next) => {
 
         if (to.path === loginRoute) {
           next({
-            path: '/',
+            path: '/'
           })
           return
-        }
-        else if (currentRouter) {
+        } else if (currentRouter) {
           router.addRoute(currentRouter)
           next({
             ...to,
-            replace: true,
+            replace: true
           })
           return
         }
-      }
-      catch (e) {
+      } catch (e) {
         if (e instanceof AxiosError && e?.response?.status === 401) {
           return
-        }
-        else {
+        } else {
           next({
             path: '/error',
             query: {
-              redirect: to.path,
-            },
+              redirect: to.path
+            }
           })
           return
         }
@@ -90,9 +86,7 @@ router.afterEach((to) => {
   if (title) {
     const localeTitle = i18n.global.t(title)
     document.title = `${localeTitle} - ${appStore.layout.title}`
-  }
-  else {
-    if (appStore.layout.title)
-      document.title = appStore.layout.title
+  } else {
+    if (appStore.layout.title) document.title = appStore.layout.title
   }
 })

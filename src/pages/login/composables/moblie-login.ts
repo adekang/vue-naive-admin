@@ -9,7 +9,7 @@ export const useMobileLogin = () => {
   const mModel = reactive<UserMobileLoginParams>({
     mobile: '',
     code: '',
-    type: 'mobile',
+    type: 'mobile'
   })
   const { t } = useI18n()
   const mFormRef = ref<FormInst>()
@@ -18,25 +18,25 @@ export const useMobileLogin = () => {
       {
         key: 'mobile',
         required: true,
-        renderMessage: () => t('login.mobile.required'),
+        renderMessage: () => t('login.mobile.required')
       },
       {
         key: 'mobile',
         pattern: /^1[3456789]\d{9}$/,
-        renderMessage: () => t('login.mobile.rule'),
-      },
+        renderMessage: () => t('login.mobile.rule')
+      }
     ],
     code: [
       {
         required: true,
-        renderMessage: () => t('login.mobile.verification-code.required'),
+        renderMessage: () => t('login.mobile.verification-code.required')
       },
       {
         min: 6,
         max: 6,
-        renderMessage: () => t('login.mobile.verification-code.rule'),
-      },
-    ],
+        renderMessage: () => t('login.mobile.verification-code.rule')
+      }
+    ]
   })
   const userStore = useUserStore()
   const counter = ref(120)
@@ -56,8 +56,7 @@ export const useMobileLogin = () => {
       const redirect = router.currentRoute.value?.params?.redirect as string
       await router.push(redirect || '/')
       mLoading.value = false
-    }
-    catch (err) {
+    } catch (err) {
       mLoading.value = false
       console.error(err)
     }
@@ -75,14 +74,16 @@ export const useMobileLogin = () => {
   const sendCode = async () => {
     const mesIns = message.loading(t('login.mobile.verification-code.loading'))
     try {
-      await mFormRef.value?.validate(undefined, rule => rule?.key === 'mobile')
+      await mFormRef.value?.validate(
+        undefined,
+        (rule) => rule?.key === 'mobile'
+      )
       await userSendCodeApi({ mobile: mModel.mobile })
       counterState.value = true
       mesIns.destroy()
       message.success(t('login.mobile.verification-code.success'))
       startCounter()
-    }
-    catch (err) {
+    } catch (err) {
       mesIns.destroy()
       console.error(err)
     }
@@ -95,6 +96,6 @@ export const useMobileLogin = () => {
     counter,
     mLogin,
     sendCode,
-    mRules,
+    mRules
   }
 }

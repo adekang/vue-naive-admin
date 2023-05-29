@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue'
 
-const props = withDefaults(defineProps<{ size?: number;title?: string }>(), {
-  size: 20,
+const props = withDefaults(defineProps<{ size?: number; title?: string }>(), {
+  size: 20
 })
 const titleStyle = computed<CSSProperties>(() => {
   return {
-    fontSize: `${props.size}px`,
+    fontSize: `${props.size}px`
   }
 })
 </script>

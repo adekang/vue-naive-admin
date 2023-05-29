@@ -11,6 +11,4 @@ defineProps<{
   <n-icon :component="icons[icon]" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -11,10 +11,13 @@ export default {
   'login.mobile.placeholder': 'Mobile number',
   'login.mobile.required': 'Please enter mobile number!',
   'login.mobile.verification-code.placeholder': 'Verification code',
-  'login.mobile.verification-code.required': 'Please enter the verification code!',
-  'login.mobile.verification-code.rule': 'The verification code format is incorrect!',
+  'login.mobile.verification-code.required':
+    'Please enter the verification code!',
+  'login.mobile.verification-code.rule':
+    'The verification code format is incorrect!',
   'login.mobile.verification-code.get-verification-code': 'Get code',
-  'login.mobile.verification-code.success': 'Verification code sent successfully!',
+  'login.mobile.verification-code.success':
+    'Verification code sent successfully!',
   'login.mobile.verification-code.loading': 'Sending verification code...',
   'login.mobile.resend': 'Resend',
   'login.remember-me': 'Remember me',
@@ -34,5 +37,5 @@ export default {
   'pages.menu.menu21.title': 'Menu2-1',
   'pages.menu.menu22.title': 'Menu2-2',
   'pages.menu.menu11.title': 'Menu1-1',
-  'pages.menu.menu12.title': 'Menu1-2',
+  'pages.menu.menu12.title': 'Menu1-2'
 }

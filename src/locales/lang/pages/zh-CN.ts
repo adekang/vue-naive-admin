@@ -35,5 +35,5 @@ export default {
   'pages.menu.menu21.title': '菜单2-1',
   'pages.menu.menu22.title': '菜单2-2',
   'pages.menu.menu11.title': '菜单1-1',
-  'pages.menu.menu12.title': '菜单1-2',
+  'pages.menu.menu12.title': '菜单1-2'
 }

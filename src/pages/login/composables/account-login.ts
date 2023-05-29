@@ -6,7 +6,7 @@ export const useAccountLogin = () => {
   // null 为naive ui的受控模式
   const model = reactive<UserAccountLoginParams>({
     username: null,
-    password: null,
+    password: null
   })
   const formRef = ref<FormInst>()
   const { t } = useI18n()
@@ -14,25 +14,25 @@ export const useAccountLogin = () => {
     username: [
       {
         required: true,
-        renderMessage: () => t('login.username.required'),
+        renderMessage: () => t('login.username.required')
       },
       {
         min: 5,
         max: 20,
-        renderMessage: () => t('login.username.length'),
-      },
+        renderMessage: () => t('login.username.length')
+      }
     ],
     password: [
       {
         required: true,
-        renderMessage: () => t('login.password.required'),
+        renderMessage: () => t('login.password.required')
       },
       {
         min: 5,
         max: 20,
-        renderMessage: () => t('login.password.length'),
-      },
-    ],
+        renderMessage: () => t('login.password.length')
+      }
+    ]
   })
   const loading = ref(false)
   const useStore = useUserStore()
@@ -51,8 +51,7 @@ export const useAccountLogin = () => {
       const redirect = router.currentRoute.value?.params?.redirect as string
       await router.push(redirect || '/')
       loading.value = false
-    }
-    catch (err) {
+    } catch (err) {
       loading.value = false
       console.error(err)
     }
@@ -62,6 +61,6 @@ export const useAccountLogin = () => {
     formRef,
     loading,
     rules,
-    login,
+    login
   }
 }
