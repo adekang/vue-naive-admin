@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import ProTable from '@/components/pro-table'
-import type { ProTableColumn } from '@/components/pro-table/typing'
 
 const { t } = useI18n()
-const columns: ProTableColumn[] = $ref([
+const columns = $ref([
   {
     title: '标题',
     key: 'title',
@@ -180,7 +179,7 @@ const data = $ref([
 </script>
 
 <template>
-  <ProTable :columns="columns" :data="data" :scroll-x="1800" />
+  <ProTable :columns="columns as any" :data="data" :scroll-x="1800" />
 </template>
 
 <style scoped></style>

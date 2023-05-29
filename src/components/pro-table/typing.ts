@@ -1,4 +1,4 @@
-import type { PropType, VNodeChild } from '@vue/runtime-core'
+import type { ExtractPropTypes, PropType, VNodeChild } from '@vue/runtime-core'
 import type { DataTableColumn } from 'naive-ui'
 import { dataTableProps } from 'naive-ui'
 
@@ -12,10 +12,24 @@ export type ProTableColumn = DataTableColumn & {
   valueEnum?: Record<string, ProTableValueEnum>
 }
 
-export const ProTableProps = {
+export interface ProTableOptions {
+  reload?: boolean
+  setting?: boolean
+}
+
+export const proTableProps = {
   ...dataTableProps,
   columns: {
     type: Array as PropType<ProTableColumn[]>,
     default: () => []
+  },
+  options: {
+    type: [Object, Boolean] as PropType<false | ProTableOptions>,
+    default: () => ({
+      reload: true,
+      setting: true
+    })
   }
 }
+
+export type ProTableProps = ExtractPropTypes<typeof proTableProps>

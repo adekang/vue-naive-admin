@@ -1,15 +1,18 @@
 import { NEl } from 'naive-ui'
 import BasicTable from './basic-table'
 import QueryForm from './query-form'
-import { ProTableProps } from './typing'
+import { proTableProps } from './typing'
+import { useProTableProvider } from '@/components/pro-table/context'
 import './styles/index.less'
 
 const ProTable = defineComponent({
   name: 'ProTable',
   props: {
-    ...ProTableProps
+    ...proTableProps
   },
   setup(props, { slots }) {
+    useProTableProvider(props)
+
     return () => {
       const basicTableSlots = {
         empty: slots.empty,
