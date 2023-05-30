@@ -20,16 +20,40 @@ const useCols = (props: QueryFormProps) => {
       return 4
     }
   })
+  const collapsed = ref(false)
   const model = reactive({})
   const itemCols = computed(() => {
-    return items.value.slice(0, cols.value)
+    if (!collapsed.value) {
+      if (cols.value <= 1) return items.value.slice(0, 1)
+
+      return items.value.slice(0, cols.value - 1)
+    }
+    return items.value
   })
+
+  const restCol = computed(() => {
+    if (cols.value <= 1) {
+      return 1
+    }
+    const rest = itemCols.value.length % cols.value
+    if (rest === 0) {
+      return cols.value
+    }
+    return cols.value - rest
+  })
+
+  const toggleCollapsed = () => {
+    collapsed.value = !collapsed.value
+  }
   return {
     items,
     model,
     cols,
     domRef,
-    itemCols
+    itemCols,
+    restCol,
+    collapsed,
+    toggleCollapsed
   }
 }
 
