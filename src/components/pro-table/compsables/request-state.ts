@@ -49,11 +49,9 @@ const useRequestState = (props: ProTableProps) => {
 
   const formatPagination = () => {
     if (props.request) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
       return {
         ...props?.pagination,
-        ...pagination.value
+        ...(pagination.value as PaginationProps)
       }
     }
     return props?.pagination
