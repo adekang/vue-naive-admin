@@ -16,7 +16,9 @@ const ProTable = defineComponent({
     return () => {
       const basicTableSlots = {
         empty: slots.empty,
-        loading: slots.loading
+        loading: slots.loading,
+        headerTitle: slots.headerTitle,
+        toolbarRender: slots.toolbarRender
       }
 
       const pagination =

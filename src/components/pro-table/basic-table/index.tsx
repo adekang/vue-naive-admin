@@ -15,9 +15,13 @@ const BasicTable = defineComponent({
         empty: slots.empty,
         loading: slots.loading
       }
+      const toolbarSlots = {
+        headerTitle: slots.headerTitle,
+        toolbarRender: slots.toolbarRender
+      }
       return (
         <div class={prefixCls}>
-          <Toolbar />
+          <Toolbar v-slots={toolbarSlots} />
           <NDataTable
             {...props}
             columns={state.settingColumn?.cols?.value}

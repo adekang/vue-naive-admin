@@ -31,7 +31,7 @@ const Setting = defineComponent({
 
       const tooltipSlots = {
         trigger: () => (
-          <div>
+          <div class={'flex'}>
             <NDropdown trigger={'click'} options={dropdownOptions}>
               <NButton text>
                 <NIcon size={'18'} class={'cursor-pointer'}>

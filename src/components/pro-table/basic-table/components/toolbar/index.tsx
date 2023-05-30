@@ -1,26 +1,36 @@
-import { NSpace } from 'naive-ui'
 import Reload from './Reload'
 import Setting from './Setting'
 import { useProTableState } from '@/components/pro-table/context'
 
 const Toolbar = defineComponent({
   name: 'Toolbar',
-  setup() {
+  setup(_, { slots }) {
     const { options } = useProTableState()
     const renderToolbar = () => {
       if (options.value === false) return null
       return (
-        <NSpace>
+        <div class={'flex gap-4'}>
           {options.value?.reload && <Reload />}
           {options.value?.setting && <Setting />}
-        </NSpace>
+        </div>
       )
     }
+
+    const renderHeaderTitle = () => {
+      if (slots.headerTitle) {
+        return slots.headerTitle()
+      }
+      return '高级表格'
+    }
+
     return () => {
       return (
         <div class={'flex justify-between pb-16px'}>
-          <div class={'font-500 text-16px'}>高级表格</div>
-          <div class={'flex justify-center'}>{renderToolbar()}</div>
+          <div class={'font-500 text-16px'}>{renderHeaderTitle()}</div>
+          <div class={'flex justify-center gap-4'}>
+            {slots.toolbarRender?.()}
+            {renderToolbar()}
+          </div>
         </div>
       )
     }

@@ -203,7 +203,12 @@ const handleRequest = async (params?: any) => {
       showSizePicker: true,
       pageSizes: [10, 50, 20, 100]
     }"
-  />
+  >
+    <template #headerTitle> 测试</template>
+    <template #toolbarRender>
+      <NButton type="primary" size="small"> 新增 </NButton>
+    </template>
+  </ProTable>
 </template>
 
 <style scoped></style>
