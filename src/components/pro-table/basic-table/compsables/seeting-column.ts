@@ -37,6 +37,11 @@ export const useSettingColumn = (props: ProTableProps) => {
   const indeterminate = computed(() => {
     return checkedKeys.value.length > 0 && !isAllChecked.value
   })
+  const cols = computed(() => {
+    return props?.columns?.filter((col) =>
+      checkedKeys.value.includes(col.key as string)
+    )
+  })
 
   const handleCheckedKeys = (kes: string[]) => {
     checkedKeys.value = kes
@@ -50,6 +55,7 @@ export const useSettingColumn = (props: ProTableProps) => {
   }
 
   return {
+    cols,
     treeData,
     checkedKeys,
     isAllChecked,
