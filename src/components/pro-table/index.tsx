@@ -19,6 +19,9 @@ const ProTable = defineComponent({
         loading: slots.loading
       }
 
+      const pagination =
+        state?.requestState?.formatPagination() ?? props?.pagination
+
       return (
         <NEl tag={'div'} class={'pro-table'}>
           <QueryForm />
@@ -26,6 +29,7 @@ const ProTable = defineComponent({
             {...props}
             {...state?.requestState?.requestProps}
             v-slots={basicTableSlots}
+            pagination={pagination}
           />
         </NEl>
       )

@@ -192,6 +192,10 @@ const handleRequest = async (params?: any) => {
     :params="{ test: '111111111' }"
     :scroll-x="1800"
     :manual-request="true"
+    :pagination="{
+      showSizePicker: true,
+      pageSizes: [10, 50, 20, 100]
+    }"
   />
 </template>
 
