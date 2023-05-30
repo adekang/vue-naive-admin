@@ -11,7 +11,7 @@ const ProTable = defineComponent({
     ...proTableProps
   },
   setup(props, { slots }) {
-    useProTableProvider(props)
+    const state = useProTableProvider(props)
 
     return () => {
       const basicTableSlots = {
@@ -22,7 +22,11 @@ const ProTable = defineComponent({
       return (
         <NEl tag={'div'} class={'pro-table'}>
           <QueryForm />
-          <BasicTable {...props} v-slots={basicTableSlots} />
+          <BasicTable
+            {...props}
+            {...state?.requestState?.requestProps}
+            v-slots={basicTableSlots}
+          />
         </NEl>
       )
     }

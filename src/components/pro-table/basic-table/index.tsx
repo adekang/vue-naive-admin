@@ -10,7 +10,6 @@ const BasicTable = defineComponent({
   setup(props, { slots }) {
     const prefixCls = 'pro-table-basic-table'
     const state = useProTableState()
-
     return () => {
       const tableSlots = {
         empty: slots.empty,

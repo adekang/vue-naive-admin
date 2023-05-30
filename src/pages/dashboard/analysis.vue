@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { systemMenuApi } from '@/api/menu'
 import ProTable from '@/components/pro-table'
 
 const { t } = useI18n()
@@ -176,10 +177,22 @@ const data = $ref([
     icon: 'LinkOutlined'
   }
 ])
+const handleRequest = async (params?: any) => {
+  const res = await systemMenuApi(params)
+  return {
+    ...res.data
+  }
+}
 </script>
 
 <template>
-  <ProTable :columns="columns as any" :data="data" :scroll-x="1800" />
+  <ProTable
+    :columns="columns as any"
+    :request="handleRequest"
+    :params="{ test: '111111111' }"
+    :scroll-x="1800"
+    :manual-request="true"
+  />
 </template>
 
 <style scoped></style>

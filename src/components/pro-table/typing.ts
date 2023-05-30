@@ -19,6 +19,15 @@ export interface ProTableOptions {
   setting?: boolean
 }
 
+export interface ProTableRequestCallback {
+  data: Record<string, any>[]
+  total: number
+}
+
+export type ProTableRequest = (
+  params?: Record<string, any>
+) => Promise<ProTableRequestCallback>
+
 export const proTableProps = {
   ...dataTableProps,
   columns: {
@@ -31,6 +40,18 @@ export const proTableProps = {
       reload: true,
       setting: true
     })
+  },
+  request: {
+    type: Function as PropType<ProTableRequest>,
+    default: undefined
+  },
+  params: {
+    type: Object as PropType<Record<string, any>>,
+    default: () => ({})
+  },
+  manualRequest: {
+    type: Boolean as PropType<boolean>,
+    default: true
   }
 }
 
