@@ -1,13 +1,16 @@
 import { ReloadOutlined } from '@vicons/antd'
 import { NButton, NIcon, NTooltip } from 'naive-ui'
+import { useProTableState } from '@/components/pro-table/context'
 
 const Reload = defineComponent({
   name: 'Reload',
   setup() {
+    const state = useProTableState()
+
     return () => {
       const tooltipSlots = {
         trigger: () => (
-          <NButton text>
+          <NButton text onClick={() => state.requestState?.handleRequest()}>
             <NIcon size={'18'} class={'cursor-pointer'}>
               <ReloadOutlined />
             </NIcon>
