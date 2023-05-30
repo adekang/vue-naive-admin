@@ -21,7 +21,8 @@ const ProFormSelect = defineComponent({
         const val = props.valueEnum[valueItem]
         opt.push({
           label: val.label,
-          value: valueItem
+          value: valueItem,
+          key: valueItem
         })
       }
       return opt
@@ -46,7 +47,9 @@ const ProFormSelect = defineComponent({
         }
         return <>{value}</>
       }
-      return <NSelect value={value} options={options.value}></NSelect>
+      return (
+        <NSelect {...props} value={value} options={options.value}></NSelect>
+      )
     }
   }
 })

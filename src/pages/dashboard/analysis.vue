@@ -196,7 +196,7 @@ const handleRequest = async (params?: any) => {
   <ProTable
     :columns="columns as any"
     :request="handleRequest"
-    :params="{ test: '111111111' }"
+    :params="{ test: '测试自带参数' }"
     :scroll-x="1800"
     :manual-request="true"
     :pagination="{

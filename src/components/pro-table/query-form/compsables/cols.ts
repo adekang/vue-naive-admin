@@ -21,7 +21,7 @@ const useCols = (props: QueryFormProps) => {
     }
   })
   const collapsed = ref(false)
-  const model = reactive({})
+  const model = reactive<Record<string, any>>({})
   const itemCols = computed(() => {
     if (!collapsed.value) {
       if (cols.value <= 1) return items.value.slice(0, 1)
@@ -45,6 +45,18 @@ const useCols = (props: QueryFormProps) => {
   const toggleCollapsed = () => {
     collapsed.value = !collapsed.value
   }
+
+  const handleSearch = () => {
+    props?.onSearch?.(model)
+  }
+  const handleReset = () => {
+    // 就需要先处理一下数据
+    for (const modelKey in model) {
+      model[modelKey] = null
+    }
+    props?.onReset?.(model)
+  }
+
   return {
     items,
     model,
@@ -53,7 +65,9 @@ const useCols = (props: QueryFormProps) => {
     itemCols,
     restCol,
     collapsed,
-    toggleCollapsed
+    toggleCollapsed,
+    handleSearch,
+    handleReset
   }
 }
 

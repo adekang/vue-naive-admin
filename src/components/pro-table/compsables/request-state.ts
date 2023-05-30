@@ -9,6 +9,7 @@ const useRequestState = (props: ProTableProps) => {
 
   const data = ref<Record<string, any>[]>([])
   const loading = ref(false)
+  let storeParams: Record<string, any> | undefined = {}
   const pagination = ref<PaginationProps>({
     page: 1,
     pageSize: 10
@@ -22,6 +23,7 @@ const useRequestState = (props: ProTableProps) => {
         page: pagination.value.page ?? 1,
         pageSize: pagination.value.pageSize ?? 10,
         ...props.params,
+        ...storeParams,
         ...params
       })
       pagination.value.pageCount = total
@@ -68,10 +70,24 @@ const useRequestState = (props: ProTableProps) => {
       return props.loading
     })
   })
+
+  const querySearch = async (params?: Record<string, any>) => {
+    const queryParam = {
+      ...params,
+      page: 1
+    }
+    try {
+      storeParams = {}
+      await handleRequest(queryParam)
+      storeParams = params
+      pagination.value.page = 1
+    } catch (error) {}
+  }
   return {
     requestProps,
     handleRequest,
-    formatPagination
+    formatPagination,
+    querySearch
   }
 }
 
