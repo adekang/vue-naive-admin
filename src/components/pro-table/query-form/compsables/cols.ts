@@ -8,8 +8,11 @@ const useCols = (props: QueryFormProps) => {
     })
   })
 
+  const model = reactive({})
+
   return {
-    items
+    items,
+    model
   }
 }
 

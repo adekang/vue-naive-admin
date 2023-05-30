@@ -14,6 +14,7 @@ export type ProTableColumn = DataTableColumn & {
   key?: string
   title?: string
   hideInSearch?: boolean
+  fieldProps?: Record<string, any>
 }
 
 export interface ProTableOptions {

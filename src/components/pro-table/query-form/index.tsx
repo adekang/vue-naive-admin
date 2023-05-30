@@ -1,3 +1,6 @@
+import { NForm, NFormItemGi, NGrid } from 'naive-ui'
+import type { ProTableColumn } from '../typing'
+import { renderField } from '@/components/pro-table/query-form/render-field'
 import useCols from '@/components/pro-table/query-form/compsables/cols'
 import { queryFormProps } from '@/components/pro-table/query-form/typing'
 
@@ -8,11 +11,25 @@ const QueryForm = defineComponent({
   },
   setup(props) {
     const prefixCls = 'pro-table-query-form'
-    const { items } = useCols(props)
+    const { items, model } = useCols(props)
     return () => {
+      const renderItems = () => {
+        return items.value.map((item: ProTableColumn) => {
+          return (
+            <NFormItemGi key={item.key} label={item.title}>
+              {renderField(item, model)}
+            </NFormItemGi>
+          )
+        })
+      }
+
       return (
         <div class={prefixCls}>
-          <h1>{items}</h1>
+          <NForm showFeedback={false} labelPlacement={'left'}>
+            <NGrid cols={4} xGap={12} yGap={12}>
+              {renderItems()}
+            </NGrid>
+          </NForm>
         </div>
       )
     }
