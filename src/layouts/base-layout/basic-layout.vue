@@ -41,16 +41,16 @@ const contentHeightVar = computed(() => `calc(100vh - ${props.headerHeight}px)`)
 const headerHeightVar = computed(() => `${props.headerHeight}px`)
 const baseSider = computed(() => props.layout === 'side')
 const innerSider = computed(() => props.layout === 'mix')
-// const headerInverted = computed(() => {
-//   props.layout === 'mix' ? true : props.inverted
-// })
+const headerInverted = computed(() =>
+  props.layout === 'mix' ? true : props.inverted
+)
 </script>
 
 <template>
   <LayoutBase :has-sider="baseSider" class="h-screen">
     <LayoutHeader
       v-if="layout !== 'side'"
-      :inverted="inverted"
+      :inverted="headerInverted"
       class="pro-admin-mix-layout-header flex items-center px-4 justify-between"
     >
       <div class="flex items-center">
