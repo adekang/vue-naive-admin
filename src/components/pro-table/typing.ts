@@ -5,6 +5,7 @@ import { dataTableProps } from 'naive-ui'
 export interface ProTableValueEnum {
   label: string | (() => VNodeChild)
   value: string | number
+  status?: 'default' | 'success' | 'error' | 'warning' | 'info'
 }
 
 export type ProTableColumn = DataTableColumn & {
@@ -12,6 +13,7 @@ export type ProTableColumn = DataTableColumn & {
   valueEnum?: Record<string, ProTableValueEnum>
   key?: string
   title?: string
+  hideInSearch?: boolean
 }
 
 export interface ProTableOptions {

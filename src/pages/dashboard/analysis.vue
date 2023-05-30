@@ -7,6 +7,8 @@ const columns = $ref([
   {
     title: '标题',
     key: 'title',
+    hideInSearch: true,
+
     width: 200,
     render(row: any) {
       return t(row.title)
@@ -34,6 +36,8 @@ const columns = $ref([
   {
     title: '图标',
     key: 'icon',
+    hideInSearch: true,
+
     width: 200
   },
   {
@@ -44,6 +48,8 @@ const columns = $ref([
   },
   {
     title: '保活状态',
+    hideInSearch: true,
+
     key: 'keepAlive',
     width: 100
   },
@@ -65,6 +71,7 @@ const columns = $ref([
   },
   {
     title: '操作',
+    hideInSearch: true,
     key: 'action',
     width: 150,
     fixed: 'right',

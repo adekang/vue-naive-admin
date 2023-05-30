@@ -1,12 +1,18 @@
+import useCols from '@/components/pro-table/query-form/compsables/cols'
+import { queryFormProps } from '@/components/pro-table/query-form/typing'
+
 const QueryForm = defineComponent({
   name: 'QueryForm',
-  setup() {
+  props: {
+    ...queryFormProps
+  },
+  setup(props) {
     const prefixCls = 'pro-table-query-form'
-
+    const { items } = useCols(props)
     return () => {
       return (
         <div class={prefixCls}>
-          <h1>QueryForm</h1>
+          <h1>{items}</h1>
         </div>
       )
     }

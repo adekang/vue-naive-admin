@@ -24,7 +24,7 @@ const ProTable = defineComponent({
 
       return (
         <NEl tag={'div'} class={'pro-table'}>
-          <QueryForm />
+          <QueryForm columns={props.columns} />
           <BasicTable
             {...props}
             {...state?.requestState?.requestProps}
