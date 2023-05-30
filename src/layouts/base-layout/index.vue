@@ -1,12 +1,8 @@
 <script lang="ts" setup>
-import MixLayout from '../mix-layout/index.vue'
-import SideLayout from '../side-layout/index.vue'
-import TopLayout from '../top-layout/index.vue'
-import MobileLayout from '../mobile-layout/index.vue'
 import SettingDrawer from '../setting-drawer/index.vue'
 import WrapContent from './wrap-content.vue'
+import BasicLayout from './basic-layout.vue'
 import { useMenuState } from '@/compsables/menu-state'
-// import { menuOptions } from '@/layouts/side-menu/menu-data'
 import { useUserStore } from '@/store/user'
 import RightContent from '@/layouts/base-layout/right-content.vue'
 import { useQueryBreakpoints } from '@/compsables/query-breakpoints'
@@ -32,68 +28,23 @@ watchEffect(() => {
 </script>
 
 <template>
-  <MobileLayout
-    v-if="isMobile"
-    v-model:visible="visible"
+  <BasicLayout
+    v-model:collapsed="layout.collapsed"
+    :options="menuOptions"
     :logo="layout.logo"
+    :active="active"
+    :layout="layout.layout"
     :title="layout.title"
+    :show-sider-trigger="layout.showSiderTrigger"
+    :sider-width="layout.siderWidth"
+    :sider-collapsed-width="layout.siderCollapsedWidth"
+    :inverted="layout.layoutStyle === 'inverted'"
   >
     <template #headerRight>
       <RightContent />
     </template>
     <WrapContent />
-  </MobileLayout>
-  <template v-else>
-    <MixLayout
-      v-if="layout.layout === 'mix'"
-      v-model:collapsed="layout.collapsed"
-      :options="menuOptions"
-      :logo="layout.logo"
-      :active="active"
-      :title="layout.title"
-      :show-sider-trigger="layout.showSiderTrigger"
-      :sider-width="layout.siderWidth"
-      :sider-collapsed-width="layout.siderCollapsedWidth"
-    >
-      <template #headerRight>
-        <RightContent />
-      </template>
-
-      <WrapContent />
-    </MixLayout>
-    <SideLayout
-      v-if="layout.layout === 'side'"
-      v-model:collapsed="layout.collapsed"
-      :logo="layout.logo"
-      :title="layout.title"
-      :inverted="layout.layoutStyle === 'inverted'"
-      :show-sider-trigger="layout.showSiderTrigger"
-      :sider-width="layout.siderWidth"
-      :sider-collapsed-width="layout.siderCollapsedWidth"
-    >
-      <template #headerRight>
-        <RightContent />
-      </template>
-      <template #headerLeft>
-        <div>测试左侧插槽</div>
-      </template>
-      <WrapContent />
-    </SideLayout>
-    <TopLayout
-      v-if="layout.layout === 'top'"
-      :logo="layout.logo"
-      :title="layout.title"
-      :inverted="layout.layoutStyle === 'inverted'"
-    >
-      <template #headerRight>
-        <RightContent />
-      </template>
-      <template #headerLeft>
-        <div>测试左侧插槽</div>
-      </template>
-      <WrapContent />
-    </TopLayout>
-  </template>
+  </BasicLayout>
   <SettingDrawer
     v-model:layout="layout.layout"
     v-model:theme="layout.theme"
