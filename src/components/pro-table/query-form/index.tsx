@@ -11,10 +11,10 @@ const QueryForm = defineComponent({
   },
   setup(props) {
     const prefixCls = 'pro-table-query-form'
-    const { items, model } = useCols(props)
+    const { itemCols, model, domRef, cols } = useCols(props)
     return () => {
       const renderItems = () => {
-        return items.value.map((item: ProTableColumn) => {
+        return itemCols.value.map((item: ProTableColumn) => {
           return (
             <NFormItemGi key={item.key} label={item.title}>
               {renderField(item, model)}
@@ -24,9 +24,9 @@ const QueryForm = defineComponent({
       }
 
       return (
-        <div class={prefixCls}>
+        <div ref={domRef} class={prefixCls}>
           <NForm showFeedback={false} labelPlacement={'left'}>
-            <NGrid cols={4} xGap={12} yGap={12}>
+            <NGrid cols={cols.value} xGap={12} yGap={12}>
               {renderItems()}
             </NGrid>
           </NForm>
