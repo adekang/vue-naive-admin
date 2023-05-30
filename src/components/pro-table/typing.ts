@@ -10,6 +10,8 @@ export interface ProTableValueEnum {
 export type ProTableColumn = DataTableColumn & {
   valueType?: 'input' | 'select'
   valueEnum?: Record<string, ProTableValueEnum>
+  key?: string
+  title?: string
 }
 
 export interface ProTableOptions {
