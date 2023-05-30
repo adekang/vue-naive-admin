@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { log } from 'console'
 import type { MenuOption } from 'naive-ui'
 import {
   LayoutBase,
