@@ -3,7 +3,7 @@ import { systemMenuApi } from '@/api/menu'
 import ProTable from '@/components/pro-table'
 
 const { t } = useI18n()
-const columns = $ref([
+const columns = ref([
   {
     title: '标题',
     key: 'title',
@@ -81,7 +81,7 @@ const columns = $ref([
     }
   }
 ])
-const data = $ref([
+const data = ref([
   {
     id: 1,
     pid: null,

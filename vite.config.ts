@@ -18,17 +18,15 @@ export default defineConfig(({ mode }) => {
     base: './',
     resolve: {
       alias: {
-        '@': baseUrl,
-      },
+        '@': baseUrl
+      }
     },
     define: {
       __VUE_I18N_FULL_INSTALL__: false,
-      __VUE_I18N_LEGACY_API__: false,
+      __VUE_I18N_LEGACY_API__: false
     },
     plugins: [
-      vue({
-        reactivityTransform: true,
-      }),
+      vue(),
       vueJsx(),
       Unocss(),
       AutoImport({
@@ -44,9 +42,9 @@ export default defineConfig(({ mode }) => {
               'useDialog',
               'useMessage',
               'useNotification',
-              'useLoadingBar',
-            ],
-          },
+              'useLoadingBar'
+            ]
+          }
         ],
         // 生成到的地址
         dts: 'types/auto-imports.d.ts',
@@ -55,18 +53,16 @@ export default defineConfig(({ mode }) => {
           // pinia状态管理目录
           'src/stores',
           // 自定义组合式api目录
-          'src/composables',
-        ],
+          'src/composables'
+        ]
       }),
       Components({
         // 导入naiveui的配置项目
         resolvers: [NaiveUiResolver()],
         // 生成类型的地址
         dts: 'types/components.d.ts',
-        dirs: [
-          'src/components',
-        ],
-      }),
+        dirs: ['src/components']
+      })
     ],
     server: {
       proxy: {
@@ -75,9 +71,10 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           ws: false,
           // 将前缀api替换为空字符串
-          rewrite: path => path.replace(new RegExp(`^${env.VITE_APP_BASE_API}`), ''),
-        },
-      },
-    },
+          rewrite: (path) =>
+            path.replace(new RegExp(`^${env.VITE_APP_BASE_API}`), '')
+        }
+      }
+    }
   }
 })
