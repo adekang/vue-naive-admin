@@ -31,7 +31,7 @@ watchEffect(() => {
     :inverted="layout.layoutStyle === 'inverted'"
     :active="active"
     :layout="layout.layout"
-    :is-mobile="isMobile"
+    :is-mobile="isMobile as boolean"
     :show-sider-trigger="layout.showSiderTrigger"
     :sider-width="layout.siderWidth"
     :sider-collapsed-width="layout.siderCollapsedWidth"
